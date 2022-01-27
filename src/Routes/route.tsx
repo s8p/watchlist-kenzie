@@ -7,7 +7,7 @@ interface Props extends RouteProps {
 }
 
 const Route = ({ isPrivate = false, component: Component, ...rest }: Props) => {
-  const authToken = localStorage.getItem("Wtoken");
+  const authToken = localStorage.getItem("@WatchList:Token");
   return (
     <ReactDOMRoute
       {...rest}

@@ -1,7 +1,9 @@
 import axios from "axios";
-
-const api = axios.create({
+// mudar nome para TMDBapi USERapi
+export const movieApi = axios.create({
   baseURL: "",
 });
 
-export default api;
+export const userApi = axios.create({
+  baseURL: "",
+});
