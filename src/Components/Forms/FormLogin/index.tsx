@@ -15,7 +15,7 @@ interface UserData {
 }
 
 const FormLogin = () => {
-  const { singIn } = useAuth();
+  const { signIn } = useAuth();
   const history = useHistory();
   const formSchema = yup.object().shape({
     email: yup.string().required("Email Obrigatorio").email("Email Invalido"),
@@ -29,7 +29,7 @@ const FormLogin = () => {
   } = useForm<UserData>({ resolver: yupResolver(formSchema) });
 
   function submitLogin(data: UserData) {
-    singIn(data, history);
+    signIn(data, history);
   }
 
   return (
