@@ -1,6 +1,11 @@
 import styled from "@emotion/styled";
+import { css } from "@emotion/react";
 
-export const Container = styled.div`
+interface ContainerProps {
+  error: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   input {
@@ -8,7 +13,14 @@ export const Container = styled.div`
     width: 280px;
     height: 50px;
     background: #ffffff;
-    border: 2px solid #e0e0e0;
+    ${(props) =>
+      props.error
+        ? css`
+            border: 2px solid red;
+          `
+        : css`
+            border: 2px solid #e0e0e0;
+          `}
     box-sizing: border-box;
     border-radius: 8px;
     @media (min-width: 700px) {
@@ -17,4 +29,8 @@ export const Container = styled.div`
   }
 `;
 
-export const Error = styled.span``;
+export const Error = styled.span`
+  color: red;
+  padding-top: 5px;
+  font-size: 14px;
+`;
