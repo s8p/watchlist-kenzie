@@ -38,7 +38,7 @@ export const SmallContainer = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 200px;
+    height: 300px;
   }
   .links_login {
     width: 300px;

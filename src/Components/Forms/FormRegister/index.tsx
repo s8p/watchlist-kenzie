@@ -12,12 +12,15 @@ import { useHistory } from "react-router";
 interface UserData {
   email: string;
   password: string;
+  name: string;
 }
 
-const FormLogin = () => {
-  const { singIn } = useAuth();
+const FormRegister = () => {
+  const { registerUser } = useAuth();
   const history = useHistory();
+
   const formSchema = yup.object().shape({
+    name: yup.string().required("Nome Obrigatorio"),
     email: yup.string().required("Email Obrigatorio").email("Email Invalido"),
     password: yup.string().required("Senha Obrigatoria"),
   });
@@ -28,31 +31,38 @@ const FormLogin = () => {
     formState: { errors },
   } = useForm<UserData>({ resolver: yupResolver(formSchema) });
 
-  function submitLogin(data: UserData) {
-    singIn(data, history);
+  function submitRegister(data: UserData) {
+    registerUser(data, history);
   }
-
   return (
     <Container>
       <FormsHeader />
       <SmallContainer>
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit(submitLogin)}>
+        <h1>Register</h1>
+        <form onSubmit={handleSubmit(submitRegister)}>
+          <FormsInput
+            placeholder="Name"
+            {...register("name")}
+            errorMessage={errors.name?.message}
+            type="text"
+          />
           <FormsInput
             placeholder="Email"
             {...register("email")}
             errorMessage={errors.email?.message}
+            type="email"
           />
           <FormsInput
             placeholder="Password"
             {...register("password")}
             errorMessage={errors.password?.message}
+            type="password"
           />
           <FormsButton>Sing In</FormsButton>
         </form>
         <div className="links_login">
           <p>
-            Create a new <Link to="/login">acount</Link>
+            Already have an <Link to="/login">acount?</Link>
           </p>
           <Link to="/login">About Us</Link>
         </div>
@@ -61,4 +71,4 @@ const FormLogin = () => {
   );
 };
 
-export default FormLogin;
+export default FormRegister;

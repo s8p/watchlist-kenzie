@@ -6,7 +6,7 @@ export const Container = styled.div`
   align-items: center;
   width: 100%;
   background: transparent;
-  padding: 30px 0px;
+  padding: 25px 0px;
   border-radius: 30px 30px 0px 0px;
   .image-container {
     display: flex;
