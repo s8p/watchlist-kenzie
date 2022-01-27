@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { History } from "history";
-import api from "../../Services/api";
+import api from "Services/api";
 
 interface AuthProviderProps {
   children: ReactNode;
