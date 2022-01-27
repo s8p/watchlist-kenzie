@@ -9,6 +9,7 @@ export const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  opacity: 0.97;
 
   @media (min-width: 700px) {
     width: 500px;

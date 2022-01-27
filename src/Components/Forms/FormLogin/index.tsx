@@ -18,8 +18,11 @@ const FormLogin = () => {
   const { signIn } = useAuth();
   const history = useHistory();
   const formSchema = yup.object().shape({
-    email: yup.string().required("Email Obrigatorio").email("Email Invalido"),
-    password: yup.string().required("Senha Obrigatoria"),
+    email: yup.string().required("Required Field").email("Invalid Emmail"),
+    password: yup
+      .string()
+      .required("Required Field")
+      .min(6, "Minimun of 6 digits"),
   });
 
   const {
@@ -52,9 +55,9 @@ const FormLogin = () => {
         </form>
         <div className="links_login">
           <p>
-            Create a new <Link to="/login">acount</Link>
+            Create a new <Link to="/register">acount</Link>
           </p>
-          <Link to="/login">About Us</Link>
+          <Link to="/aboutus">About Us</Link>
         </div>
       </SmallContainer>
     </Container>
