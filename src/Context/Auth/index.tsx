@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { History } from "history";
-import api from "Services/api";
+import { userApi } from "Services/api";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   });
 
   const singIn = (data: UserData, history: History) => {
-    api
+    userApi
       .post("/login", data)
       .then((response) => {
         console.log(response.data);
@@ -46,7 +46,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const registerUser = (data: UserData, history: History) => {
-    api
+    userApi
       .post("/register", data)
       .then((response) => {
         console.log(response.data);

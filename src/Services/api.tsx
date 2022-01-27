@@ -4,6 +4,6 @@ export const movieApi = axios.create({
   baseURL: "",
 });
 
-export const Userapi = axios.create({
+export const userApi = axios.create({
   baseURL: "",
 });
