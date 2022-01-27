@@ -20,9 +20,12 @@ const FormRegister = () => {
   const history = useHistory();
 
   const formSchema = yup.object().shape({
-    name: yup.string().required("Nome Obrigatorio"),
-    email: yup.string().required("Email Obrigatorio").email("Email Invalido"),
-    password: yup.string().required("Senha Obrigatoria"),
+    name: yup.string().required("Required Field"),
+    email: yup.string().required("Required Field").email("Invalid Email"),
+    password: yup
+      .string()
+      .required("Required Field")
+      .min(6, "Minimun of 6 digits"),
   });
 
   const {
@@ -58,13 +61,13 @@ const FormRegister = () => {
             errorMessage={errors.password?.message}
             type="password"
           />
-          <FormsButton>Sing In</FormsButton>
+          <FormsButton>Sing Up</FormsButton>
         </form>
         <div className="links_login">
           <p>
             Already have an <Link to="/login">acount?</Link>
           </p>
-          <Link to="/login">About Us</Link>
+          <Link to="/aboutus">About Us</Link>
         </div>
       </SmallContainer>
     </Container>

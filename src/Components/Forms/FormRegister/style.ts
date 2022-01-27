@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   width: 300px;
-  height: 550px;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  opacity: 0.97;
 
   @media (min-width: 700px) {
     width: 500px;

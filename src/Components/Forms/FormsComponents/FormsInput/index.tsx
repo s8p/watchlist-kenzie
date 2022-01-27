@@ -14,7 +14,7 @@ const FormsInputBase: ForwardRefRenderFunction<
   FormsInputProps
 > = ({ errorMessage, ...rest }, ref) => {
   return (
-    <Container>
+    <Container error={!!errorMessage}>
       <input {...rest} ref={ref} />
       {errorMessage && <Error>{errorMessage}</Error>}
     </Container>
