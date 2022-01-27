@@ -1,7 +1,9 @@
 import axios from "axios";
 
-const api = axios.create({
+export const movieApi = axios.create({
   baseURL: "",
 });
 
-export default api;
+export const Userapi = axios.create({
+  baseURL: "",
+});
