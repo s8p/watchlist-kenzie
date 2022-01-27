@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useState } from "react";
 import { History } from "history";
-import api from "Services/api";
+import { userApi } from "Services/api";
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -13,7 +13,7 @@ interface UserData {
 interface AuthProviderData {
   authToken: string;
   logOut: (history: History) => void;
-  singIn: (data: UserData, history: History) => void;
+  signIn: (data: UserData, history: History) => void;
   registerUser: (data: UserData, history: History) => void;
 }
 
@@ -21,16 +21,16 @@ const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
 
 export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authToken, setAuthToken] = useState(() => {
-    return localStorage.getItem("@HToken") || "";
+    return localStorage.getItem("@WatchList:Token") || "";
   });
 
-  const singIn = (data: UserData, history: History) => {
-    api
+  const signIn = (data: UserData, history: History) => {
+    userApi
       .post("/login", data)
       .then((response) => {
         console.log(response.data);
         localStorage.setItem(
-          "@HToken",
+          "@WatchList:Token",
           JSON.stringify(response.data.accessToken)
         );
         setAuthToken(response.data.token);
@@ -46,18 +46,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const registerUser = (data: UserData, history: History) => {
-    api
+    userApi
       .post("/register", data)
       .then((response) => {
         console.log(response.data);
         setAuthToken(response.data.token);
-        history.push("/");
+        history.push("/login");
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <AuthContext.Provider value={{ authToken, logOut, singIn, registerUser }}>
+    <AuthContext.Provider value={{ authToken, logOut, signIn, registerUser }}>
       {children}
     </AuthContext.Provider>
   );
