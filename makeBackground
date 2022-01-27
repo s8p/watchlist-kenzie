@@ -1,0 +1,63 @@
+#!/bin/env bash
+
+BASE_URL="https://api.themoviedb.org/3"
+API_TOKEN="eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTk3YTM4MDc5ZTlmY2JjNWM1ZmI2ODRjY2M0MjYxYyIsInN1YiI6IjYxZjE0MTg4ZTlkYTY5MDA5NDkyNDE3YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1wQkWzosJVfuM3eIIMnPuNtOXVTxtGfJBrhAgyJFj48"
+ASSETS_FOLDER="./src/Assets"
+MOVIE_POSTERS="./posters/movies"
+SERIES_POSTERS="./posters/series"
+
+createFolder(){
+    if [[ -d "$1" ]]; then
+        mkdir -vp "$1"
+    fi
+}
+
+getPosters (){
+    if [[ "$1" = "tv" ]]; then
+        local POSTER_FOLDER=$SERIES_POSTERS
+    elif [[ "$1" = "movie" ]]; then
+        local POSTER_FOLDER=$MOVIE_POSTERS
+    else
+        echo "Invalid argument"
+        exit 1
+    fi
+    local IFS=","
+    local index=1
+    local NUM=${2:=1}
+    for (( i=1;i<=$NUM;i++ )); do
+        local RESPONSE="$(curl -s --request GET \
+                                --url "${BASE_URL}/$1/top_rated?page=$i" \
+                                --header "Authorization: Bearer ${API_TOKEN}" \
+                                --header 'Content-Type: application/json;charset=utf-8')"
+        for line in ${RESPONSE}; do
+            if [[ "$line" =~ poster ]]; then
+                local POSTER_URL=$(echo "${line//\"/}" | cut -d":" -f2)
+                echo "Downloading $POSTER_URL into $POSTER_FOLDER"
+                curl -s "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${POSTER_URL}" -o "$POSTER_FOLDER/$index.jpg"
+                ((index+=1))
+            fi
+        done
+    done
+    
+}
+
+makeMosaic (){
+    if [[ "$1" = "tv" ]]; then
+        local type="series"
+    elif [[ "$1" = "movie" ]]; then
+        local type="movies"
+    else
+        echo "Invalid argument"
+        exit 1
+    fi
+    echo "Making mosaic"
+ montage -mode concatenate -tile 10 "$2/*" "$2/out.png"
+ echo "Finishing touches"
+ convert -resize 1920 "$2/out.png" "./src/Assets/${type}_background.png"
+ rm "$2/out.png"
+}
+
+getPosters "movie" 3
+getPosters "tv" 3
+makeMosaic "movie" $MOVIE_POSTERS
+makeMosaic "tv" $SERIES_POSTERS
