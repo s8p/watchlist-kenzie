@@ -1,11 +1,11 @@
-import axios from 'axios'
+import axios from "axios";
 
-const token = process.env.REACT_APP_TMDB_TOKEN
+const token = process.env.REACT_APP_TMDB_TOKEN;
 export const tmdbApi = axios.create({
-  baseURL: 'https://api.themoviedb.org/3',
+  baseURL: "https://api.themoviedb.org/3",
   headers: { Authorization: `Bearer ${token}` },
-})
+});
 
 export const userApi = axios.create({
-  baseURL: '',
-})
+  baseURL: "https://watchlist-fake-api.herokuapp.com/",
+});
