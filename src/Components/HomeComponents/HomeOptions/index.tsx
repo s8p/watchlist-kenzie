@@ -1,7 +1,9 @@
+import { useHistory } from "react-router";
 import HomeButton from "../HomeButton";
 import { Container } from "./style";
 
 const HomeOptions = () => {
+  const history = useHistory();
   return (
     <Container>
       <h1>
@@ -9,8 +11,10 @@ const HomeOptions = () => {
         and movies you love and want to watch !
       </h1>
       <div className="buttons_container">
-        <HomeButton>LogIn</HomeButton>
-        <HomeButton>Register</HomeButton>
+        <HomeButton onClick={() => history.push("/login")}>LogIn</HomeButton>
+        <HomeButton onClick={() => history.push("/register")}>
+          Register
+        </HomeButton>
       </div>
     </Container>
   );
