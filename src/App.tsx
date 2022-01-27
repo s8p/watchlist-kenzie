@@ -1,13 +1,8 @@
 import React from "react";
+import Routes from "Routes/index";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h1>teste do global</h1>
-      </header>
-    </div>
-  );
+  return <Routes />;
 }
 
 export default App;
