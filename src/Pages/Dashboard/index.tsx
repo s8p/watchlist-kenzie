@@ -1,25 +1,19 @@
-import { Container, DashboardBox, PopularBox, TopRatedBox } from "./style";
+import PopularBox from "Components/DashComponents/PopularBox";
+import TopRatedBox from "Components/DashComponents/TopRatedBox";
+import RandomBox from "Components/DashComponents/RandomBox";
 
-import { useTmdb } from "Context/Series";
-import CardView from "Components/CardView";
+import { Container, DashboardBox } from "./style";
 
 const Dashboard = () => {
-  const { popular } = useTmdb();
-
-  console.log("popular", popular);
-
   return (
     <Container>
+      <div className="opacity_container"></div>
       <DashboardBox>
         <header>Header</header>
-        <div>Random movie</div>
+        <RandomBox />
         <section>
-          <TopRatedBox>our picks</TopRatedBox>
-          <PopularBox>
-            {popular.map((element, index) => (
-              <CardView key={index} content={element} />
-            ))}
-          </PopularBox>
+          <TopRatedBox />
+          <PopularBox />
         </section>
       </DashboardBox>
     </Container>
