@@ -130,12 +130,12 @@ export const GlobalStyles = () => (
       }
       //----------------------------------Default colors-----------------------------------//
       :root {
-        --yellow: #F7D633;
+        --yellow: #f7d633;
         --black: #000000;
-        --gray: #A3A3A3
-        --darkGray: #373737
-        --floralWhite: #fffaf2
-        --white: #ffffff
+        --gray: #a3a3a3;
+        --darkGray: #373737;
+        --floralWhite: #fffaf2;
+        --white: #ffffff;
       }
     `}
   />
