@@ -9,7 +9,7 @@ const RandomBox = () => {
 
   if (popular.length > 0) {
     const poster = TvShow.backdrop_path;
-    image = `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${TvShow}`;
+    image = `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${poster}`;
   }
 
   return (
