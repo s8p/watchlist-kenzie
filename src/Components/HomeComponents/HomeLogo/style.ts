@@ -12,6 +12,7 @@ export const Container = styled.div`
     height: 100vh;
     position: absolute;
     left: 0;
+    padding: 0px;
     .image_container {
       transform: rotate(-19.5deg);
       img {
