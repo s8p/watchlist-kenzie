@@ -1,7 +1,13 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { tmdbApi } from "Services/api";
 
-interface Serie {
+interface Product {
   backdrop_path: string;
   first_air_date: string;
   genre_ids: number;
@@ -18,8 +24,8 @@ interface Serie {
 }
 
 interface TmdbProviderData {
-  popular: Serie[];
-  topRated: Serie[];
+  popular: Product[];
+  topRated: Product[];
   topSeries: () => void;
   popularSeries: () => void;
 }
@@ -34,11 +40,13 @@ export const TmdbProvider = ({ children }: TmdbProps) => {
   const [topRated, setTopRated] = useState([]);
   const [popular, setPopular] = useState([]);
 
+  // console.log("popular", popular);
+  // console.log("top rated", topRated);
+
   const topSeries = () => {
     tmdbApi
       .get("/tv/top_rated")
       .then((response) => {
-        console.log("response series top rated", response);
         setTopRated(response.data.results);
       })
       .catch((error) => {
@@ -50,13 +58,17 @@ export const TmdbProvider = ({ children }: TmdbProps) => {
     tmdbApi
       .get("/tv/popular")
       .then((response) => {
-        console.log("response popular series", response);
         setPopular(response.data.results);
       })
       .catch((error) => {
         console.log("popular series error", error);
       });
   };
+
+  useEffect(() => {
+    topSeries();
+    popularSeries();
+  }, []);
 
   return (
     <TmdbContext.Provider
