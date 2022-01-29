@@ -16,7 +16,7 @@ interface UserData {
 }
 
 const FormRegister = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, setIsLoadLogin } = useAuth();
   const history = useHistory();
 
   const formSchema = yup.object().shape({
@@ -35,6 +35,7 @@ const FormRegister = () => {
   } = useForm<UserData>({ resolver: yupResolver(formSchema) });
 
   function submitRegister(data: UserData) {
+    setIsLoadLogin(true);
     registerUser(data, history);
   }
   return (
