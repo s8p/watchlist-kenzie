@@ -13,7 +13,7 @@ export const Container = styled.div`
 
   .opacity_container {
     position: absolute;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     /* background: green; */
     /* opacity: 0.6; */

@@ -8,8 +8,20 @@ export const Container = styled.div`
   justify-content: center;
   z-index: 0;
   overflow: hidden;
+  position: relative;
   /* flex-direction: column; */
-  /* position: relative; */
+
+  #poster {
+    @media (min-width: 1000px) {
+      display: none;
+    }
+  }
+
+  #banner {
+    @media (max-width: 1000px) {
+      display: none;
+    }
+  }
 
   > div {
     /* width: 533px; */
@@ -23,6 +35,10 @@ export const Container = styled.div`
     justify-content: flex-end;
 
     > section {
+      @media (max-width: 450px) {
+        display: none;
+      }
+
       height: 100%;
 
       > h1 {
@@ -56,6 +72,10 @@ export const Container = styled.div`
         background: orange;
         width: 100px;
         height: 30px;
+
+        @media (max-width: 450px) {
+          display: none;
+        }
       }
     }
   }

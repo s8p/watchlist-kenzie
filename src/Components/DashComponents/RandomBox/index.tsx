@@ -6,7 +6,9 @@ import { Container } from "./style";
 const RandomBox = () => {
   const { popular /*TvShow*/ } = useTmdb();
 
-  let image;
+  let imageBanner;
+  let banner;
+  let imagePoster;
   let poster;
   let overview;
   let title;
@@ -15,15 +17,17 @@ const RandomBox = () => {
     const RandomNumber = Math.round(Math.random() * popular.length);
     const TvShow = popular[RandomNumber];
 
-    poster = TvShow.backdrop_path;
+    banner = TvShow.backdrop_path;
+    poster = TvShow.poster_path;
     console.log("iniciei");
 
-    if (poster === null || undefined) {
+    if (banner === null || undefined) {
       console.log("repetir");
       RandomPoster();
     } else {
       console.log("escolhenod image");
-      image = `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${poster}`;
+      imageBanner = `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${banner}`;
+      imagePoster = `//www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster}`;
       overview = TvShow.overview;
       title = TvShow.name;
     }
@@ -36,11 +40,12 @@ const RandomBox = () => {
 
   return (
     <Container>
-      <img src={image} alt="banner" />
+      <img src={imagePoster} alt="poster" id="poster" />
+      <img src={imageBanner} alt="banner" id="banner" />
       <div>
         <section>
           <h1>Sinopse</h1>
-          {overview !== "" ? <p>{overview}</p> : <p>{title}</p>}
+          {!!overview !== false ? <p>{overview}</p> : <p>{title}</p>}
         </section>
         <div>
           <button>details</button>
