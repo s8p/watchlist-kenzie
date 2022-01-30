@@ -8,7 +8,7 @@ const PopularBox = () => {
 
   return (
     <Container>
-      Nosso array
+      {/* Nosso array */}
       {popular.map((element, index) => (
         <CardView key={index} content={element} />
       ))}

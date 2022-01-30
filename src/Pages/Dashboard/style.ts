@@ -7,8 +7,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   background-image: url(${Background});
   background-size: 80%;
+
   .opacity_container {
     position: absolute;
     width: 100vw;
@@ -36,11 +38,12 @@ export const DashboardBox = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
+  gap: 40px;
 
   justify-content: space-evenly;
 
   > header {
-    /* background: red; */
+    background: red;
     width: 100%;
     height: 50px;
   }

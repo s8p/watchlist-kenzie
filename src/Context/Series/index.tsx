@@ -28,7 +28,7 @@ interface TmdbProviderData {
   topRated: Product[];
   topSeries: () => void;
   popularSeries: () => void;
-  TvShow: Product;
+  // TvShow: Product;
 }
 
 interface TmdbProps {
@@ -41,8 +41,8 @@ export const TmdbProvider = ({ children }: TmdbProps) => {
   const [topRated, setTopRated] = useState([]);
   const [popular, setPopular] = useState([]);
 
-  const RandomNumber = Math.round(Math.random() * popular.length);
-  const TvShow = popular[RandomNumber];
+  // const RandomNumber = Math.round(Math.random() * popular.length);
+  // const TvShow = popular[RandomNumber];
 
   const topSeries = () => {
     tmdbApi
@@ -73,7 +73,7 @@ export const TmdbProvider = ({ children }: TmdbProps) => {
 
   return (
     <TmdbContext.Provider
-      value={{ topSeries, popularSeries, popular, topRated, TvShow }}
+      value={{ topSeries, popularSeries, popular, topRated /*TvShow*/ }}
     >
       {children}
     </TmdbContext.Provider>
