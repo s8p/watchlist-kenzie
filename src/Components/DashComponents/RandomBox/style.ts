@@ -18,8 +18,9 @@ export const Container = styled.div`
   }
 
   #banner {
-    @media (max-width: 1000px) {
-      display: none;
+    display: none;
+    @media (min-width: 1000px) {
+      display: initial;
     }
   }
 
