@@ -26,7 +26,13 @@ export const Container = styled.div`
   > div {
     /* width: 533px; */
     /* height: 300px; */
-    background: var(--black);
+    /* background: var(--darkGray); */
+    background: rgb(2, 0, 36);
+    background: linear-gradient(
+      180deg,
+      rgba(2, 0, 36, 1) 6%,
+      var(--darkGray) 100%
+    );
     color: white;
     display: flex;
     flex-direction: column;

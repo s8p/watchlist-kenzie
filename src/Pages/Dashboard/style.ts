@@ -7,6 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 50px;
 
   background-image: url(${Background});
   background-size: 80%;
@@ -22,7 +23,7 @@ export const Container = styled.div`
       rgba(0, 0, 0, 0.586053) 0.01%,
       rgba(0, 0, 0, 0) 0.02%,
       rgba(0, 0, 0, 0.586053) 0.03%,
-      #000000 99.99%
+      #000000 80%
     );
   }
 `;

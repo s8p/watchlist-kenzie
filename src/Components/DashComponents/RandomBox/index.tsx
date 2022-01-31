@@ -44,7 +44,7 @@ const RandomBox = () => {
       <img src={imageBanner} alt="banner" id="banner" />
       <div>
         <section>
-          <h1>Sinopse</h1>
+          <h1>{title}</h1>
           {!!overview !== false ? <p>{overview}</p> : <p>{title}</p>}
         </section>
         <div>
