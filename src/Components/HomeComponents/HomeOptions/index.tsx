@@ -1,4 +1,5 @@
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import HomeButton from "../HomeButton";
 import { Container } from "./style";
 
@@ -16,6 +17,7 @@ const HomeOptions = () => {
           Register
         </HomeButton>
       </div>
+      <Link to="/aboutus">About Us</Link>
     </Container>
   );
 };

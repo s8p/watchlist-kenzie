@@ -15,6 +15,8 @@ interface AuthProviderData {
   logOut: (history: History) => void;
   signIn: (data: UserData, history: History) => void;
   registerUser: (data: UserData, history: History) => void;
+  loadLogin: boolean;
+  setIsLoadLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AuthContext = createContext<AuthProviderData>({} as AuthProviderData);
@@ -23,6 +25,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   const [authToken, setAuthToken] = useState(() => {
     return localStorage.getItem("@WatchList:Token") || "";
   });
+  const [loadLogin, setIsLoadLogin] = useState(false);
 
   const signIn = (data: UserData, history: History) => {
     userApi
@@ -35,8 +38,9 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         );
         setAuthToken(response.data.token);
         history.push("/dashboard");
+        setIsLoadLogin(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setIsLoadLogin(false));
   };
 
   const logOut = (history: History) => {
@@ -52,12 +56,22 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
         console.log(response.data);
         setAuthToken(response.data.token);
         history.push("/login");
+        setIsLoadLogin(false);
       })
       .catch((err) => console.log(err));
   };
 
   return (
-    <AuthContext.Provider value={{ authToken, logOut, signIn, registerUser }}>
+    <AuthContext.Provider
+      value={{
+        authToken,
+        logOut,
+        signIn,
+        registerUser,
+        loadLogin,
+        setIsLoadLogin,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );

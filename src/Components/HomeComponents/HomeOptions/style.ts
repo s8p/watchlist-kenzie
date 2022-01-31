@@ -11,6 +11,19 @@ export const Container = styled.div`
   border-radius: 40px;
   z-index: 2;
   opacity: 0.97;
+  a {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #f7d633;
+  }
+
   h1 {
     font-family: Bungee;
     font-style: normal;
