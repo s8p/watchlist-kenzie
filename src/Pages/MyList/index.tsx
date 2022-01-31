@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import Header from "Components/Header";
 import { ButtonBar } from "./styles/ButtonBar";
-import { MoviesList } from "./styles/MoviesList";
+import { List } from "./styles/List";
 
 const Mylist = () => {
   return (
@@ -11,7 +11,7 @@ const Mylist = () => {
         <Button>Todos</Button>
         <Button>Vistos</Button>
       </ButtonBar>
-      <MoviesList></MoviesList>
+      <List></List>
     </>
   );
 };

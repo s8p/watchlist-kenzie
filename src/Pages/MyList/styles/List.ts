@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MoviesList = styled.div`
+export const List = styled.div`
   width: 80%;
   .seriesCard {
     margin-top: 1em;
