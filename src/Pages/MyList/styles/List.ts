@@ -1,15 +1,6 @@
 import styled from "@emotion/styled";
 
 export const List = styled.div`
+  margin: 0 auto;
   width: 80%;
-  .seriesCard {
-    margin-top: 1em;
-    display: flex;
-    &:nth-child(odd) {
-      flex-direction: row;
-    }
-    &:nth-child(even) {
-      flex-direction: row-reverse;
-    }
-  }
 `;
