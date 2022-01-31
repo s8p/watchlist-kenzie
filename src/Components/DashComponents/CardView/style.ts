@@ -2,17 +2,19 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   background: orange;
-  width: 130px;
-  height: 260px;
+  width: 200px;
+  height: 300px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  position: relative;
 
-  transition: 1s;
+  transition: 0.8s;
 
   :hover,
   :focus {
-    transform: scale(1.2);
+    height: 360px;
+    width: 240px;
   }
 `;
 
@@ -31,7 +33,9 @@ export const Title = styled.div`
   color: var(--white);
   overflow: hidden;
 
-  transition: 0.5s;
+  transition: 0.3s;
+
+  position: absolute;
 
   :hover,
   :focus {
