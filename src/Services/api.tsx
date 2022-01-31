@@ -7,5 +7,5 @@ export const tmdbApi = axios.create({
 });
 
 export const userApi = axios.create({
-  baseURL: "https://watchlist-fake-api.herokuapp.com/",
+  baseURL: "https://watchlist-fake-api.herokuapp.com",
 });
