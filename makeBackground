@@ -1,13 +1,47 @@
 #!/bin/env bash
 
 BASE_URL="https://api.themoviedb.org/3"
-API_TOKEN="eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0ZTk3YTM4MDc5ZTlmY2JjNWM1ZmI2ODRjY2M0MjYxYyIsInN1YiI6IjYxZjE0MTg4ZTlkYTY5MDA5NDkyNDE3YyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1wQkWzosJVfuM3eIIMnPuNtOXVTxtGfJBrhAgyJFj48"
+API_TOKEN="$(cat .env | cut -d"=" -f2)"
+if [[ -z "$API_TOKEN" ]]; then
+    exit 1
+fi
 ASSETS_FOLDER="./src/Assets"
 MOVIE_POSTERS="./posters/movies"
 SERIES_POSTERS="./posters/series"
 
+printHelp() {
+    echo "Help message"
+}
+
+checkDeps() {
+    local DISTRO="$(cat /etc/os-release | grep -oE '^ID=.*' | cut -d"=" -f2)"
+    if ! command -v convert &> /dev/null; then
+        local MISSING="ImageMagick"
+    elif ! command -v jq &> /dev/null; then
+        local MISSING="jq"
+    fi
+    if [[ ! -z $MISSING ]];then
+        case "$DISTRO" in
+            "ubuntu") 
+                printf "${MISSING} missing\nInstall using 'sudo apt install ${MISSING}'"
+                exit 1
+                ;;
+            "manjaro")
+                printf "${MISSING} missing\nInstall using 'pamac install ${MISSING}'"
+                exit 1
+                ;;
+            *) 
+                printf "ImageMagick missing\nInstall using your package manager"
+                exit 1
+                ;;
+        esac
+    fi
+}
+
+checkDeps
+
 createFolder(){
-    if [[ -d "$1" ]]; then
+    if [[ ! -d "$1" ]]; then
         mkdir -vp "$1"
     fi
 }
@@ -21,43 +55,76 @@ getPosters (){
         echo "Invalid argument"
         exit 1
     fi
-    local IFS=","
-    local index=1
     local NUM=${2:=1}
+    case "$1" in
+        "tv") local POSTER_FOLDER=$SERIES_POSTERS
+            ;;
+        "movie") local POSTER_FOLDER=$MOVIE_POSTERS 
+            ;;
+        *)
+            printHelp
+            exit 1
+            ;;
+    esac
+
+    local index=1
     for (( i=1;i<=$NUM;i++ )); do
         local RESPONSE="$(curl -s --request GET \
-                                --url "${BASE_URL}/$1/top_rated?page=$i" \
-                                --header "Authorization: Bearer ${API_TOKEN}" \
-                                --header 'Content-Type: application/json;charset=utf-8')"
-        for line in ${RESPONSE}; do
-            if [[ "$line" =~ poster ]]; then
-                local POSTER_URL=$(echo "${line//\"/}" | cut -d":" -f2)
-                echo "Downloading $POSTER_URL into $POSTER_FOLDER"
-                curl -s "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${POSTER_URL}" -o "$POSTER_FOLDER/$index.jpg"
-                ((index+=1))
-            fi
-        done
-    done
-    
-}
+            --url "${BASE_URL}/$1/popular?page=$i" \
+            --header "Authorization: Bearer ${API_TOKEN}" \
+            --header 'Content-Type: application/json;charset=utf-8' | jq -r ".results[].poster_path")"
+                    for line in ${RESPONSE}; do
+                        if [[ "$line" != "null" ]]; then
+                            # local POSTER_URL=$(echo "${line//\"/}" | cut -d":" -f2)
+                            echo "Downloading $line into $POSTER_FOLDER"
+                            curl -s "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${line}" -o "$POSTER_FOLDER/$index.jpg"
+                            ((index+=1))
+                        fi
+                    done
+                done
+
+            }
 
 makeMosaic (){
-    if [[ "$1" = "tv" ]]; then
-        local type="series"
-    elif [[ "$1" = "movie" ]]; then
-        local type="movies"
-    else
-        echo "Invalid argument"
-        exit 1
-    fi
-    echo "Making mosaic"
- montage -mode concatenate -tile 10 "$2/*" "$2/out.png"
- echo "Finishing touches"
- convert -resize 1920 "$2/out.png" "./src/Assets/${type}_background.png"
- rm "$2/out.png"
+    local NUM=${2:=1}
+    local FILE=1
+    local -a POSTER_FOLDER
+    case "$1" in
+        "tv") 
+            local POSTER_FOLDER=$SERIES_POSTERS/*
+            local type="movies"
+            ;;
+        "movie") 
+            local POSTER_FOLDER=$MOVIE_POSTERS/*
+            local type="series"
+            ;;
+        "both") 
+            local type="mix"
+            for (( i = 0; i < $NUM * 20; i++ )); do
+                if (( $i % 2 == 0 )); then
+                    POSTER_FOLDER[$i]="$MOVIE_POSTERS/$FILE.jpg"
+                else
+                    POSTER_FOLDER[$i]="$SERIES_POSTERS/$FILE.jpg"
+                    ((FILE+=1))
+                fi
+            done
+            ;;
+        *)
+            printHelp
+            exit 1
+            ;;
+    esac
+    echo "Making ${type} mosaic"
+    montage -mode concatenate -tile 10 ${POSTER_FOLDER[*]} "out.png"
+    echo "Resizing"
+    convert -resize 1920 "out.png" "./src/Assets/${type}_background.png"
+    rm "out.png"
 }
 
-getPosters "movie" 3
-getPosters "tv" 3
-makeMosaic "movie" $MOVIE_POSTERS
-makeMosaic "tv" $SERIES_POSTERS
+    createFolder $MOVIE_POSTERS
+    createFolder $SERIES_POSTERS
+    getPosters "movie" 3
+    getPosters "tv" 3
+    makeMosaic "both" 3
+    makeMosaic "movie" 3
+    makeMosaic "tv" 3
