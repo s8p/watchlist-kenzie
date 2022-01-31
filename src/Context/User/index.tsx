@@ -11,7 +11,7 @@ import { userApi } from "Services/api";
 interface User {
   email: string;
   name: string;
-  password: number;
+  password: string;
   id: number;
   watchList: MySeries[];
 }
