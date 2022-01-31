@@ -44,19 +44,13 @@ export const TmdbProvider = ({ children }: TmdbProps) => {
   // const RandomNumber = Math.round(Math.random() * popular.length);
   // const TvShow = popular[RandomNumber];
 
-  const topSeries = () => {
-    tmdbApi
-      .get("/tv/top_rated")
-      .then((response) => {
-        setTopRated(response.data.results);
-      })
-      .catch((error) => {
-        console.log("top rated error", error);
-      });
+  const topSeries = async () => {
+    const response = await tmdbApi.get(`/tv/top_rated`);
+    setTopRated(response.data.results);
   };
 
-  const popularSeries = () => {
-    tmdbApi
+  const popularSeries = async () => {
+    await tmdbApi
       .get("/tv/popular")
       .then((response) => {
         setPopular(response.data.results);
