@@ -2,8 +2,8 @@ import { UseUser } from "Context/User";
 // import { useEffect } from "react";
 import { Container } from "./styles";
 import LogoMobile from "../../Assets/LogoMobile.png";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import MenuIcon from "@mui/icons-material/Menu";
+// import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+// import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <Container>
       <div className="logo">
-        <AccountCircleIcon />
+        {/* <AccountCircleIcon /> */}
         <div className="user_data">
           <p>Murilo Martins</p>
           <p>murilo@mail.com</p>
@@ -31,9 +31,7 @@ const Header = () => {
           <img src={LogoMobile} alt="Logo" />
         </div>
       </div>
-      <div className="mobile_menu">
-        <MenuIcon />
-      </div>
+      <div className="mobile_menu">{/* <MenuIcon /> */}</div>
     </Container>
   );
 };
