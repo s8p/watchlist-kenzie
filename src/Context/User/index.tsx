@@ -11,7 +11,7 @@ import { userApi } from "Services/api";
 interface User {
   email: string;
   name: string;
-  age: number;
+  password: number;
   id: number;
 }
 
@@ -83,12 +83,12 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
   const getUser = useCallback(async () => {
     const token = localStorage.getItem("@WatchList:Token") || "";
-    const tokenData: TokenData = jwtDecode(token);
-    const response = await userApi.get("/users");
-    const userData = await response.data.filter(
-      (user: User) => user.id === Number(tokenData.sub)
-    );
-    setUser(userData);
+    const newToken = JSON.parse(token);
+    const tokenData: TokenData = jwtDecode(newToken);
+    const response = await userApi.get(`/users/${Number(tokenData.sub)}`, {
+      headers: { Authotization: token },
+    });
+    setUser(response.data);
   }, []);
 
   const addSerie = async (serie: Serie) => {
@@ -105,12 +105,12 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const removeSerie = async (serie: Serie) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
     const serieDeleted = myList.find((s) => s.name === serie.name);
+    const series = myList.filter((s) => s.name !== serie.name);
     if (!!serieDeleted) {
-      const response = await userApi.delete(`/${serieDeleted.id}`, {
+      await userApi.delete(`/${serieDeleted.id}`, {
         headers: { Authorization: token },
       });
-      const newList = [...response.data, { serie, liked: false }];
-      setMyList(newList);
+      setMyList(series);
     }
   };
 

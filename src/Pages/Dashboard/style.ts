@@ -44,9 +44,9 @@ export const DashboardBox = styled.div`
   justify-content: space-evenly;
 
   > header {
-    background: red;
     width: 100%;
-    height: 50px;
+    position: relative;
+    background: transparent;
   }
 
   > section {
