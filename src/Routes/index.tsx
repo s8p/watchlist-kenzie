@@ -9,6 +9,7 @@ import Dashboard from "Pages/Dashboard";
 import Aboutus from "Pages/AboutUs";
 
 const Routes = () => {
+    const token = localStorage.getItem("@WatchList:Token")
   return (
     <Switch>
       <Route exact path="/" component={Home} />
@@ -16,7 +17,7 @@ const Routes = () => {
       <Route path="/register" component={Register} />
       <Route path="/mylist" component={Mylist} isPrivate />
       <Route path="/dashboard" component={Dashboard} isPrivate />
-      <Route path="/aboutus" component={Aboutus} />
+      <Route path="/aboutus" component={Aboutus} isPrivate={!!token}/>
     </Switch>
   );
 };
