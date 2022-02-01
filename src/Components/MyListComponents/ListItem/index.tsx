@@ -44,7 +44,7 @@ const MyListItem = ({ content }: MyLitItemProps) => {
           <div className="buttonBar">
             <Button>Já assisti</Button>
             <Button>Remover</Button>
-            <Button>Detalhes</Button>
+            {/* <Button>Detalhes</Button> */}
           </div>
         </div>
       </section>
