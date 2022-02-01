@@ -1,11 +1,15 @@
 import { Button } from "@mui/material";
-
 import Header from "Components/Header";
-import MyListItem from "Components/MyListComponents/ListItem";
+import MenuMobile from "Components/MenuMobile";
+import { UseUser } from "Context/User";
+
+// import MyListItem from "Components/MyListComponents/ListItem";
 
 import { ButtonBar, List, Container, MyListBox } from "./style";
 
 const Mylist = () => {
+  const { mobileOpen } = UseUser();
+
   const TestObject = {
     backdrop_path: "/oKt4J3TFjWirVwBqoHyIvv5IImd.jpg",
     first_air_date: "2019-06-16",
@@ -26,29 +30,17 @@ const Mylist = () => {
   return (
     <Container>
       <div className="opacity_container"></div>
-      {/* <Header /> */}
       <MyListBox>
-        <header>header</header>
+        <Header />
         <ButtonBar>
           <Button>Todos</Button>
           <Button>Vistos</Button>
         </ButtonBar>
-        <List>
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-          <MyListItem content={TestObject} />
-        </List>
+        <List></List>
+        {mobileOpen && <MenuMobile />}
       </MyListBox>
     </Container>
   );
 };
+
 export default Mylist;

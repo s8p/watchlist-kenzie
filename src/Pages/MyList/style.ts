@@ -26,19 +26,10 @@ export const Container = styled.div`
 export const MyListBox = styled.div`
   z-index: 1;
   width: 100%;
-  /* background: pink; */
   min-width: 320px;
-  /* width: 820px; */
   max-width: 1600px;
   margin-top: 30px;
   color: white;
-
-  > header {
-    text-align: center;
-    background: red;
-    width: 100%;
-    height: 50px;
-  }
 `;
 
 export const ButtonBar = styled.div`
