@@ -1,8 +1,9 @@
 import { Button } from "@mui/material";
+
 import Header from "Components/Header";
 import MyListItem from "Components/MyListComponents/ListItem";
-import { ButtonBar } from "./styles/ButtonBar";
-import { List } from "./styles/List";
+
+import { ButtonBar, List, Container, MyListBox } from "./style";
 
 const Mylist = () => {
   const TestObject = {
@@ -23,14 +24,31 @@ const Mylist = () => {
     status: "watched",
   };
   return (
-    <>
-      <Header />
-      <ButtonBar>
-        <Button>Todos</Button>
-        <Button>Vistos</Button>
-      </ButtonBar>
-      <List></List>
-    </>
+    <Container>
+      <div className="opacity_container"></div>
+      {/* <Header /> */}
+      <MyListBox>
+        <header>header</header>
+        <ButtonBar>
+          <Button>Todos</Button>
+          <Button>Vistos</Button>
+        </ButtonBar>
+        <List>
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+          <MyListItem content={TestObject} />
+        </List>
+      </MyListBox>
+    </Container>
   );
 };
 export default Mylist;
