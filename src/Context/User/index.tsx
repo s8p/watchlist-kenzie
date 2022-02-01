@@ -11,8 +11,9 @@ import { userApi } from "Services/api";
 interface User {
   email: string;
   name: string;
-  age: number;
+  password: string;
   id: number;
+  watchList: MySeries[];
 }
 
 interface TokenData {
@@ -45,79 +46,82 @@ interface Serie {
 interface MySeries {
   backdrop_path: string;
   first_air_date: string;
-  genre_ids: number;
   id: number;
   name: string;
   origin_country: string;
   original_language: string;
   original_name: string;
   overview: string;
-  popularity: number;
   poster_path: string;
   vote_average: number;
-  vote_count: number;
   liked: boolean;
+  status: string;
+  idTmdb: number;
 }
 interface UserContextProps {
   user: User;
-  getUser: () => void;
+  getUserData: () => void;
   addSerie: (serie: Serie) => void;
   removeSerie: (serie: Serie) => void;
-  loadMyList: () => void;
-  myList: MySeries[];
 }
 
 const UserContext = createContext<UserContextProps>({} as UserContextProps);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
-  const [myList, setMyList] = useState<MySeries[]>([]);
 
-  const loadMyList = useCallback(async () => {
-    const token = localStorage.getItem("@WatchList:Token") || "";
-    const response = await userApi.get("", {
-      headers: { Authorization: token },
-    });
-    setMyList(response.data);
-  }, []);
-
-  const getUser = useCallback(async () => {
+  const getUserData = useCallback(async () => {
     const token = localStorage.getItem("@WatchList:Token") || "";
     const tokenData: TokenData = jwtDecode(token);
-    const response = await userApi.get("/users");
-    const userData = await response.data.filter(
-      (user: User) => user.id === Number(tokenData.sub)
+    const response = await userApi.get(
+      `/users/${Number(tokenData.sub)}/?_embed=watchlist`
     );
-    setUser(userData);
+
+    setUser(response.data);
   }, []);
 
   const addSerie = async (serie: Serie) => {
-    const token = localStorage.getItem("@WatchList:Token") || "";
     const idTmdb = serie.id;
-    const newSerie = { serie, liked: false, idTmdb };
-    const response = await userApi.post("", newSerie, {
-      headers: { Authorization: token },
-    });
-    const newList = [...myList, response.data];
-    setMyList(newList);
+    const {
+      backdrop_path,
+      first_air_date,
+      name,
+      origin_country,
+      original_name,
+      original_language,
+      overview,
+      poster_path,
+      vote_average,
+    } = serie;
+    const newSerie = {
+      backdrop_path,
+      first_air_date,
+      name,
+      origin_country,
+      original_name,
+      original_language,
+      overview,
+      poster_path,
+      vote_average,
+      liked: false,
+      idTmdb,
+      status: "notWatched",
+      userId: user.id,
+    };
+    await userApi.post("/watchList", newSerie);
+    getUserData();
   };
 
   const removeSerie = async (serie: Serie) => {
-    const token = localStorage.getItem("@WatchList:Token") || "";
-    const serieDeleted = myList.find((s) => s.name === serie.name);
+    const serieDeleted = user.watchList.find((s) => s.name === serie.name);
     if (!!serieDeleted) {
-      const response = await userApi.delete(`/${serieDeleted.id}`, {
-        headers: { Authorization: token },
-      });
-      const newList = [...response.data, { serie, liked: false }];
-      setMyList(newList);
+      await userApi.delete(`watchList/${serieDeleted.id}`);
+      getUserData();
     }
   };
 
   return (
-    <UserContext.Provider
-      value={{ getUser, user, addSerie, myList, removeSerie, loadMyList }}
-    >
+    <UserContext.Provider value={{ getUserData, user, addSerie, removeSerie }}>
       {children}
     </UserContext.Provider>
   );

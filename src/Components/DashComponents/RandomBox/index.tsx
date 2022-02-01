@@ -1,5 +1,4 @@
 import { useTmdb } from "Context/Series";
-// import { useEffect } from "react";
 
 import { Container } from "./style";
 
@@ -13,7 +12,7 @@ const RandomBox = () => {
   let overview;
   let title;
 
-  const RandomPoster = () => {
+  const RandomPoster = async () => {
     const RandomNumber = Math.round(Math.random() * popular.length);
     const TvShow = popular[RandomNumber];
 
