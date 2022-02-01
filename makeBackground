@@ -1,0 +1,193 @@
+#!/bin/env bash
+
+BASE_URL="https://api.themoviedb.org/3"
+ENV_FILE="./.env"
+if [[ -f "$ENV_FILE" ]]; then
+    API_TOKEN="$(cat .env | cut -d"=" -f2)"
+else
+    printf "'%s' not found" $ENV_FILE
+    exit 1
+fi
+ASSETS_FOLDER="./src/Assets"
+MOVIE_POSTERS="./posters/movies"
+SERIES_POSTERS="./posters/series"
+
+
+printHelp() {
+    while read; do
+		printf '%s\n' "$REPLY"
+	done <<-EOF
+		Usage: makeBackground [OPTS]
+            -h, --help               - Displays this help information.
+            -m, --movies             - Generate mosaic using only movie posters. 
+            -s, --series             - Generate mosaic using only serie posters.
+            -b, --both               - Generate mosaic using both movie and serie posters.
+            -e, --endpoint           - Use custom TMDB_API endpoint, default: /popular
+            --no-download            - Generate mosaic without downloading posters.
+            --no-mosaic              - Only download posters.
+	EOF
+}
+
+downloadPosters='True'
+generateMosaic='True'
+declare -a usePostersFrom
+endPoint='popular'
+
+while [[ -n $1 ]]; do
+    case "$1" in
+        --help|-h) 
+            printHelp
+            exit 0
+            ;;
+        --movies|-m) 
+            usePostersFrom+=("movie")
+            ;;
+        --series|-s)
+            usePostersFrom+=("serie")
+            ;;
+        --both|-b)
+            usePostersFrom+=("both")
+            ;;
+        --endpoint|-e)
+            shift
+            if [[ -z $1 ]]; then
+                printf "No endpoint provided"
+                exit 1
+            fi
+            endPoint="$1"
+            ;;
+        --no-download)
+            downloadPosters='False'
+            ;;
+        --no-mosaic)
+            generateMosaic='False'
+            ;;
+        *)
+            printHelp
+            exit 1
+    esac
+    shift
+done
+
+checkDeps() {
+    local DISTRO="$(cat /etc/os-release | grep -oE '^ID=.*' | cut -d"=" -f2)"
+    if ! command -v convert &> /dev/null; then
+        local MISSING="ImageMagick"
+        local INFO="For more info go to 'https://imagemagick.org/script/index.php'"
+    elif ! command -v jq &> /dev/null; then
+        local MISSING="jq"
+        local INFO="for more info go to 'https://stedolan.github.io/jq/'"
+    fi
+    if [[ ! -z $MISSING ]];then
+        case "$DISTRO" in
+            "ubuntu") 
+                printf "${MISSING} missing\nInstall using 'sudo apt install ${MISSING}'\n${INFO}"
+                exit 1
+                ;;
+            "manjaro")
+                printf "${MISSING} missing\nInstall using 'pamac install ${MISSING}'\n${INFO}"
+                exit 1
+                ;;
+            *) 
+                printf "ImageMagick missing\nInstall using your package manager"
+                exit 1
+                ;;
+        esac
+    fi
+}
+
+
+createFolder(){
+    if [[ ! -d "$1" ]]; then
+        mkdir -p "$1"
+    fi
+}
+
+getPosters (){
+    local NUM=${2:=1}
+    case "$1" in
+        "serie")
+            local POSTER_FOLDER=$SERIES_POSTERS
+            local type="tv"
+            createFolder $SERIES_POSTERS
+            ;;
+        "movie")
+            local POSTER_FOLDER=$MOVIE_POSTERS 
+            local type="movie"
+            createFolder $MOVIE_POSTERS
+            ;;
+        *)
+            printHelp
+            exit 1
+            ;;
+    esac
+
+    local index=1
+    for (( i=1;i<=$NUM;i++ )); do
+        local RESPONSE="$(curl -s --request GET \
+            --url "${BASE_URL}/$type/${endPoint/\/}?page=$i" \
+            --header "Authorization: Bearer ${API_TOKEN}" \
+            --header 'Content-Type: application/json;charset=utf-8' | jq -r ".results[].poster_path")"
+                    for line in ${RESPONSE}; do
+                        if [[ "$line" != "null" ]]; then
+                            printf "\u001b[2K\r"
+                            printf "Downloading $line into $POSTER_FOLDER"
+                            curl -s "https://www.themoviedb.org/t/p/w600_and_h900_bestv2${line}" -o "$POSTER_FOLDER/$index.jpg"
+                            ((index+=1))
+                        fi
+                    done
+                done
+
+}
+
+makeMosaic (){
+    local NUM=${2:=1}
+    local FILE=1
+    local -a POSTER_FOLDER
+    case "$1" in
+        "serie") 
+            local POSTER_FOLDER=$SERIES_POSTERS/*
+            local type="series"
+            ;;
+        "movie") 
+            local POSTER_FOLDER=$MOVIE_POSTERS/*
+            local type="movies"
+            ;;
+        "both") 
+            local type="mix"
+            for (( i = 0; i < $NUM * 20; i++ )); do
+                if (( $i % 2 == 0 )); then
+                    POSTER_FOLDER[$i]="$MOVIE_POSTERS/$FILE.jpg"
+                else
+                    POSTER_FOLDER[$i]="$SERIES_POSTERS/$FILE.jpg"
+                    ((FILE+=1))
+                fi
+            done
+            ;;
+        *)
+            printHelp
+            exit 1
+            ;;
+    esac
+    printf "\nMaking %s mosaic\n" $type
+    montage -mode concatenate -tile 10 ${POSTER_FOLDER[*]} "out.png"
+    printf "Resizing and saving mosaic at '%s/%s_background.png'\n" $ASSETS_FOLDER $type
+    convert -resize 1920 "out.png" "$ASSETS_FOLDER/${type}_background.png"
+    rm "out.png"
+}
+
+main () {
+    checkDeps
+    if [[ ${#usePostersFrom[@]} == 0 ]]; then
+        usePostersFrom=("movie" "serie" "both")
+    fi
+    for type in "${usePostersFrom[@]}"; do
+        if [[ "$downloadPosters" == "True" ]] && [[ "$type" != "both" ]]; then
+            getPosters $type 3
+        fi
+        if [[ "$generateMosaic" == "True" ]]; then
+            makeMosaic $type 3
+        fi
+    done
+}
+main
