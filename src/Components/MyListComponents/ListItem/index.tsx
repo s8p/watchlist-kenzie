@@ -24,19 +24,29 @@ const MyListItem = ({ content }: MyLitItemProps) => {
   const image = `//www.themoviedb.org/t/p/w600_and_h900_bestv2/${content.poster_path}`;
   return (
     <Container>
-      <img src={image} alt="" />
-      <div className="extra">
-        <div className="text">
-          <h3>{content.name}</h3>
-          {content.overview}
-        </div>
+      <section>
+        <div className="opacity_container"></div>
 
-        <div className="buttonBar">
-          <Button>Já assisti</Button>
-          <Button>Remover</Button>
-          <Button>Detalhes</Button>
+        <img src={image} alt="" />
+
+        <div className="extra">
+          <div className="text">
+            <h3>{content.name}</h3>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Architecto voluptates necessitatibus ipsam exercitationem. Quidem
+              id, eveniet ipsum eum eaque minus. Sed natus doloremque fugit
+              exercitationem eveniet molestias rem enim quaerat?
+            </p>
+          </div>
+
+          <div className="buttonBar">
+            <Button>Já assisti</Button>
+            <Button>Remover</Button>
+            {/* <Button>Detalhes</Button> */}
+          </div>
         </div>
-      </div>
+      </section>
     </Container>
   );
 };
