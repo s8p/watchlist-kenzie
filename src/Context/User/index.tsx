@@ -63,12 +63,15 @@ interface UserContextProps {
   getUserData: () => void;
   addSerie: (serie: Serie) => void;
   removeSerie: (serie: MySeries) => void;
+  mobileOpen: boolean;
+  setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const UserContext = createContext<UserContextProps>({} as UserContextProps);
 
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const getUserData = useCallback(async () => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -129,7 +132,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   };
 
   return (
-    <UserContext.Provider value={{ getUserData, user, addSerie, removeSerie }}>
+    <UserContext.Provider
+      value={{
+        getUserData,
+        user,
+        addSerie,
+        removeSerie,
+        mobileOpen,
+        setMobileOpen,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );
