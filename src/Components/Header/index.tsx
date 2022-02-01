@@ -9,7 +9,7 @@ import { useAuth } from "Context/Auth";
 import { useHistory } from "react-router";
 
 const Header = () => {
-  const { user, getUserData } = UseUser();
+  const { user, getUserData, setMobileOpen } = UseUser();
   const { logOut } = useAuth();
   const history = useHistory();
   useEffect(() => {
@@ -29,14 +29,14 @@ const Header = () => {
         <div className="nav_desktop">
           <Link to="/dashboard">Dashboard</Link>
           <Link to="/mylist">My list</Link>
-          <Link to="Dashboard">About Us</Link>
+          <Link to="/aboutus">About Us</Link>
         </div>
         <div className="logo_mobile">
           <img src={LogoMobile} alt="Logo" />
         </div>
       </div>
       <div className="mobile_menu">
-        <MenuIcon />
+        <MenuIcon onClick={() => setMobileOpen(true)} />
       </div>
     </Container>
   );
