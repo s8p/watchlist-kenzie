@@ -30,10 +30,10 @@ interface UserProviderProps {
 interface Serie {
   backdrop_path: string;
   first_air_date: string;
-  genre_ids: number;
+  genre_ids: number[];
   id: number;
   name: string;
-  origin_country: string;
+  origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
@@ -48,7 +48,7 @@ interface MySeries {
   first_air_date: string;
   id: number;
   name: string;
-  origin_country: string;
+  origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
@@ -62,7 +62,7 @@ interface UserContextProps {
   user: User;
   getUserData: () => void;
   addSerie: (serie: Serie) => void;
-  removeSerie: (serie: Serie) => void;
+  removeSerie: (serie: MySeries) => void;
 }
 
 const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -81,6 +81,8 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   }, []);
 
   const addSerie = async (serie: Serie) => {
+    const token = localStorage.getItem("@WatchList:Token") || "";
+    const newToken = JSON.parse(token);
     const idTmdb = serie.id;
     const {
       backdrop_path,
@@ -108,14 +110,20 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       status: "notWatched",
       userId: user.id,
     };
-    await userApi.post("/watchList", newSerie);
+    await userApi.post("/watchList", newSerie, {
+      headers: { Authorization: `Bearer ${newToken}` },
+    });
     getUserData();
   };
 
-  const removeSerie = async (serie: Serie) => {
+  const removeSerie = async (serie: MySeries) => {
+    const token = localStorage.getItem("@WatchList:Token") || "";
+    const newToken = JSON.parse(token);
     const serieDeleted = user.watchList.find((s) => s.name === serie.name);
     if (!!serieDeleted) {
-      await userApi.delete(`watchList/${serieDeleted.id}`);
+      await userApi.delete(`watchList/${serieDeleted.id}`, {
+        headers: { Authorization: `Bearer ${newToken}` },
+      });
       getUserData();
     }
   };

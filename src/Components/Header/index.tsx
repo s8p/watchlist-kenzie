@@ -1,24 +1,28 @@
 import { UseUser } from "Context/User";
-// import { useEffect } from "react";
+import { useEffect } from "react";
 import { Container } from "./styles";
 import LogoMobile from "../../Assets/LogoMobile.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
+import { useAuth } from "Context/Auth";
+import { useHistory } from "react-router";
 
 const Header = () => {
-  const { user } = UseUser();
-  // useEffect(() => {
-  //   getUser();
-  // }, [getUser]);
+  const { user, getUserData } = UseUser();
+  const { logOut } = useAuth();
+  const history = useHistory();
+  useEffect(() => {
+    getUserData();
+  }, [getUserData]);
   return (
     <Container>
       <div className="logo">
         <AccountCircleIcon />
         <div className="user_data">
-          <p>Murilo Martins</p>
-          <p>murilo@mail.com</p>
-          <span>LogOut</span>
+          <p>{user.name}</p>
+          <p>{user.email}</p>
+          <span onClick={() => logOut(history)}>LogOut</span>
         </div>
       </div>
       <div className="nav_container">

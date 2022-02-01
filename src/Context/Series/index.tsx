@@ -10,10 +10,10 @@ import { tmdbApi } from "Services/api";
 interface Product {
   backdrop_path: string;
   first_air_date: string;
-  genre_ids: number;
+  genre_ids: number[];
   id: number;
   name: string;
-  origin_country: string;
+  origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
