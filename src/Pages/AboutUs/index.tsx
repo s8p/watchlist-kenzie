@@ -8,10 +8,11 @@ import {
 import Card from "Components/AboutusComponents/Card";
 import HomeButton from "Components/AboutusComponents/HomeButton";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const Aboutus = () => {
   const authToken = localStorage.getItem("@WatchList:Token");
+  const history = useHistory();
 
   interface Dev {
     name: string;
@@ -87,7 +88,9 @@ const Aboutus = () => {
       {/* <div className="opacity_container"></div> */}
       <MainBox>
         {authToken && <header>Header</header>}
-        {!authToken && <HomeButton> "Arrow" </HomeButton>}
+        {!authToken && (
+          <HomeButton onClick={() => history.goBack()}> "Arrow" </HomeButton>
+        )}
         <DescriptionContainer>
           <h3> The Watchlist Team</h3>
 

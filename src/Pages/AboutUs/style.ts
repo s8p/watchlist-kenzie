@@ -65,8 +65,8 @@ export const DescriptionContainer = styled.div`
 `;
 
 export const CardContainer = styled.div`
-  padding-left: 80px;
-  padding-right: 80px;
+  /* padding-left: 80px;
+  padding-right: 80px; */
   margin-top: 33px;
   gap: 10px;
   display: flex;
