@@ -55,7 +55,7 @@ interface MySeries {
   poster_path: string;
   vote_average: number;
   liked: boolean;
-  status: string;
+  status: "watched" | "watching" | "notWatched";
   idTmdb: number;
 }
 interface UserContextProps {

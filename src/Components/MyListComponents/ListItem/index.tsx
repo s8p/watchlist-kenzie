@@ -1,5 +1,4 @@
 import { Button } from "@mui/material";
-import CardView from "Components/DashComponents/CardView";
 import { Container } from "./styles";
 
 interface ProductProps {
