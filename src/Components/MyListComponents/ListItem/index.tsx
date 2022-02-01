@@ -33,7 +33,12 @@ const MyListItem = ({ content }: MyLitItemProps) => {
         <div className="extra">
           <div className="text">
             <h3>{content.name}</h3>
-            <p>{content.overview}</p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Architecto voluptates necessitatibus ipsam exercitationem. Quidem
+              id, eveniet ipsum eum eaque minus. Sed natus doloremque fugit
+              exercitationem eveniet molestias rem enim quaerat?
+            </p>
           </div>
 
           <div className="buttonBar">

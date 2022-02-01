@@ -4,13 +4,9 @@ export const Container = styled.div`
   width: 100%;
   margin: 20px auto;
   display: flex;
-  padding-right: 7em;
-  padding-left: 0em;
 
   &:nth-child(even) {
     flex-direction: row-reverse;
-    padding-left: 7em;
-    padding-right: 0em;
 
     section {
       flex-direction: row-reverse;
@@ -39,8 +35,10 @@ export const Container = styled.div`
       }
 
       img {
-        border-top-right-radius: 80px;
-        border-top-left-radius: 0px;
+        @media (min-width: 500px) {
+          border-top-right-radius: 80px;
+          border-top-left-radius: 0px;
+        }
       }
     }
   }
@@ -49,10 +47,20 @@ export const Container = styled.div`
     position: relative;
     z-index: 1;
     display: flex;
-
+    justify-content: center;
     width: 1100px;
 
+    @media (min-width: 768px) {
+      justify-content: flex-start;
+    }
+
     .opacity_container {
+      display: none;
+
+      @media (min-width: 500px) {
+        display: initial;
+      }
+
       border-bottom-right-radius: 80px;
       border-top-left-radius: 80px;
 
@@ -81,43 +89,58 @@ export const Container = styled.div`
     img {
       width: 250px;
       height: 350px;
-      border-top-left-radius: 80px;
+      border-radius: 16px;
+
+      @media (min-width: 500px) {
+        border-radius: 0px;
+        border-top-left-radius: 80px;
+      }
     }
 
     .extra {
-      padding-left: 2em;
-      padding-right: 2em;
-      display: flex;
+      display: none;
+
+      @media (min-width: 500px) {
+        display: flex;
+      }
+
       flex-direction: column;
       justify-content: space-between;
       width: 100%;
       align-items: center;
 
       .text {
-        /* background: orange; */
-        width: 500px;
-        height: 60%;
+        height: 100%;
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+        flex-wrap: wrap;
         text-align: center;
 
         h3 {
+          width: 100%;
           font-size: 3rem;
         }
         p {
-          /* margin-top: 16px; */
-          font-size: 2rem;
+          height: 180px;
+          font-size: 1.5rem;
+          overflow: hidden;
+          overflow-y: scroll;
+
+          @media (min-width: 768px) {
+            font-size: 1.7rem;
+          }
         }
       }
 
       .buttonBar {
-        height: 40%;
-        width: 100%;
-        display: flex;
+        display: none;
+        @media (min-width: 768px) {
+          display: flex;
+        }
+
+        height: 100px;
+        width: 80%;
         justify-content: space-evenly;
         flex-direction: column;
-        /* background: blue; */
         align-items: center;
 
         &:nth-child(even) {
