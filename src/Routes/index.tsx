@@ -6,6 +6,7 @@ import Mylist from "Pages/MyList";
 import Register from "Pages/Register";
 import Route from "./route";
 import Dashboard from "Pages/Dashboard";
+import Aboutus from "Pages/AboutUs";
 
 const Routes = () => {
   return (
@@ -15,6 +16,7 @@ const Routes = () => {
       <Route path="/register" component={Register} />
       <Route path="/mylist" component={Mylist} />
       <Route path="/dashboard" component={Dashboard} />
+      <Route path="/aboutus" component={Aboutus} />
     </Switch>
   );
 };
