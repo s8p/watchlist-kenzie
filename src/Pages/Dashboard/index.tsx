@@ -8,7 +8,8 @@ import MenuMobile from "Components/MenuMobile";
 import { UseUser } from "Context/User";
 
 const Dashboard = () => {
-  const { mobileOpen } = UseUser();
+  const { mobileOpen, user } = UseUser();
+  console.log(user);
   return (
     <>
       <Container>

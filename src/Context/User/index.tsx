@@ -13,7 +13,7 @@ interface User {
   name: string;
   password: string;
   id: number;
-  watchList: MySeries[];
+  watchlist: MySeries[];
 }
 
 interface TokenData {
@@ -122,7 +122,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const removeSerie = async (serie: MySeries) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
     const newToken = JSON.parse(token);
-    const serieDeleted = user.watchList.find((s) => s.name === serie.name);
+    const serieDeleted = user.watchlist.find((s) => s.name === serie.name);
     if (!!serieDeleted) {
       await userApi.delete(`watchList/${serieDeleted.id}`, {
         headers: { Authorization: `Bearer ${newToken}` },
