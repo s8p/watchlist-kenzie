@@ -32,6 +32,7 @@ export const SmallContainer = styled.div`
     line-height: 22px;
     color: #f7d633;
     padding: 20px 0px;
+    margin: 10px;
   }
   form {
     display: flex;
@@ -73,6 +74,10 @@ export const SmallContainer = styled.div`
       text-align: center;
       letter-spacing: -0.02em;
       color: #f7d633;
+
+      :hover {
+        font-weight: bold;
+      }
     }
   }
   @media (min-width: 700px) {

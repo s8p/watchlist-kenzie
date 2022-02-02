@@ -9,8 +9,18 @@ export const Container = styled.button`
   border-radius: 8px;
   border: none;
   color: black;
-  font-family: Roboto;
+  font-family: "Roboto", sans-serif;
   font-style: Medium;
   font-size: 18px;
   line-height: 26px;
+  font-weight: bold;
+  
+  :hover {
+    background: var(--grey);
+    border: 3px solid var(--yellow);
+    color: var(--yellow);
+  }
+
+  :active {
+    transform: translateY(2px);
 `;

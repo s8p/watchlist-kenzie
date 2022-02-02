@@ -62,11 +62,11 @@ const FormRegister = () => {
             errorMessage={errors.password?.message}
             type="password"
           />
-          <FormsButton>Sing Up</FormsButton>
+          <FormsButton>Sign Up</FormsButton>
         </form>
         <div className="links_login">
           <p>
-            Already have an <Link to="/login">acount?</Link>
+            Already have an <Link to="/login">account?</Link>
           </p>
           <Link to="/aboutus">About Us</Link>
         </div>
