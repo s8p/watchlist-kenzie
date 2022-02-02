@@ -1,4 +1,8 @@
+import { memo } from "react";
 import { UseUser } from "Context/User";
+
+import Button from "Components/Button";
+
 import { Container, Title } from "./style";
 
 interface ProductProps {
@@ -30,10 +34,13 @@ const CardView = ({ content }: CardViewProps) => {
       <img src={image} alt="poster" />
       <Title>
         <p>{content.name}</p>
-        <button onClick={() => addSerie(content)}>Adicionar</button>
+
+        <div>
+          <Button onClick={() => addSerie(content)}>Add to your list</Button>
+        </div>
       </Title>
     </Container>
   );
 };
 
-export default CardView;
+export default memo(CardView);

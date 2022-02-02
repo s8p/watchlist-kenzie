@@ -109,6 +109,7 @@ export const GlobalStyles = () => {
         body {
           line-height: 1;
           box-sizing: border-box;
+          font-family: "Work Sans", sans-serif;
         }
         ol,
         ul {

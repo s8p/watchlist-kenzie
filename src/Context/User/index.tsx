@@ -6,14 +6,14 @@ import {
   useContext,
   useState,
 } from "react";
-import { userApi } from "Services/api";
+import { tmdbApi, userApi } from "Services/api";
 
 interface User {
   email: string;
   name: string;
   password: string;
   id: number;
-  watchList: MySeries[];
+  watchlist: MySeries[];
 }
 
 interface TokenData {
@@ -69,6 +69,9 @@ interface UserContextProps {
 
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  search: Serie[];
+  setSearch: React.Dispatch<React.SetStateAction<Serie[]>>;
+  searchSerie: (name: string) => void;
 }
 
 const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -76,6 +79,7 @@ const UserContext = createContext<UserContextProps>({} as UserContextProps);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [search, setSearch] = useState<Serie[]>([]);
 
   const getUserData = useCallback(async () => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -86,6 +90,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
     setUser(response.data);
   }, []);
+
+  const searchSerie = async (name: string) => {
+    const newName = name.replaceAll(" ", "%20");
+    const responseTv = await tmdbApi.get(`/search/tv?query=${newName}`);
+    // const responseMovie = await tmdbApi.get(`/search/movie?query=${newName}`);
+
+    const newList = [...responseTv.data.results];
+
+    setSearch(newList);
+  };
 
   const addSerie = async (serie: Serie) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -126,7 +140,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
   const removeSerie = async (serie: MySeries) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
     const newToken = JSON.parse(token);
-    const serieDeleted = user.watchList.find((s) => s.name === serie.name);
+    const serieDeleted = user.watchlist.find((s) => s.name === serie.name);
     if (!!serieDeleted) {
       await userApi.delete(`watchList/${serieDeleted.id}`, {
         headers: { Authorization: `Bearer ${newToken}` },
@@ -168,9 +182,15 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         removeSerie,
         mobileOpen,
         setMobileOpen,
+<<<<<<< HEAD
         startWatching,
         finishWatching,
         resetWatched,
+=======
+        searchSerie,
+        search,
+        setSearch,
+>>>>>>> fe6777d04211b8fe212ea2beeb9b1f14849df185
       }}
     >
       {children}

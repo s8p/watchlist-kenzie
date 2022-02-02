@@ -1,12 +1,11 @@
 import { useTmdb } from "Context/Series";
+import { memo } from "react";
 import CardView from "../CardView";
 
 import { Container } from "./style";
 
 const PopularBox = () => {
   const { popular } = useTmdb();
-
-  console.log("popular", popular);
 
   return (
     <Container>
@@ -17,4 +16,4 @@ const PopularBox = () => {
   );
 };
 
-export default PopularBox;
+export default memo(PopularBox);

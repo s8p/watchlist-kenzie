@@ -1,14 +1,13 @@
 import styled from "@emotion/styled";
 
-export const Container = styled.div`
-  /* background: var(--darkGray); */
+export const SmallContainer = styled.div`
   height: 380px;
   display: flex;
   overflow-x: scroll;
   gap: 10px;
   align-items: center;
   border-radius: 8px;
-  
+  position: relative;
   padding: 0px 40px;
 
 
@@ -26,5 +25,16 @@ export const Container = styled.div`
     }
 
   
+  }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  h1 {
+    color: var(--yellow);
+    font-size: 20px;
+    position: relative;
+    align-self: start;
   }
 `;
