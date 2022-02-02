@@ -90,9 +90,9 @@ const Aboutus = () => {
 
   return (
     <Container>
-      {/* <div className="opacity_container"></div> */}
+      <div className="opacity_container"></div>
       <MainBox>
-        {authToken && <header>Header</header>}
+        {authToken && <Header />}
         <DescriptionContainer>
           <header>
             <h3> The Watchlist Team</h3>

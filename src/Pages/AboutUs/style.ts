@@ -48,6 +48,8 @@ export const DescriptionContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: left;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
   margin-top: 33px;
   padding: 20px;
   padding-left: 80px;

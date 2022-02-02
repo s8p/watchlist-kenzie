@@ -2,13 +2,13 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 1690px;
+  /* max-width: 1690px; */
   height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: var(--white);
-  background-color: var(--black);
+  background-color: var(--darkGray);
   border-radius: 15px;
   box-sizing: border-box;
   padding: 10px;
