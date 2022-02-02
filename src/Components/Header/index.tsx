@@ -9,7 +9,7 @@ import { useAuth } from "Context/Auth";
 import { useHistory } from "react-router";
 
 const Header = () => {
-  const { user, getUserData, setMobileOpen } = UseUser();
+  const { user, getUserData, setMobileOpen, setSearch } = UseUser();
   const { logOut } = useAuth();
   const history = useHistory();
   useEffect(() => {
@@ -27,9 +27,15 @@ const Header = () => {
       </div>
       <div className="nav_container">
         <div className="nav_desktop">
-          <Link to="/dashboard">Dashboard</Link>
-          <Link to="/mylist">My list</Link>
-          <Link to="/aboutus">About Us</Link>
+          <Link to="/dashboard" onClick={() => setSearch([])}>
+            Dashboard
+          </Link>
+          <Link to="/mylist" onClick={() => setSearch([])}>
+            My list
+          </Link>
+          <Link to="/aboutus" onClick={() => setSearch([])}>
+            About Us
+          </Link>
         </div>
         <div className="logo_mobile">
           <img src={LogoMobile} alt="Logo" />

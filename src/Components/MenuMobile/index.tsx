@@ -7,7 +7,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import CloseIcon from "@mui/icons-material/Close";
 
 const MenuMobile = () => {
-  const { user, setMobileOpen } = UseUser();
+  const { user, setMobileOpen, setSearch } = UseUser();
   const { logOut } = useAuth();
 
   const history = useHistory();
@@ -28,9 +28,15 @@ const MenuMobile = () => {
         <div></div>
       </div>
       <div className="links">
-        <Link to="/dashboard">Dashboard</Link>
-        <Link to="/mylist">My list</Link>
-        <Link to="/aboutus">About Us</Link>
+        <Link to="/dashboard" onClick={() => setSearch([])}>
+          Dashboard
+        </Link>
+        <Link to="/mylist" onClick={() => setSearch([])}>
+          My list
+        </Link>
+        <Link to="/aboutus" onClick={() => setSearch([])}>
+          About Us
+        </Link>
         <span onClick={() => logOut(history)}>LogOut</span>
       </div>
     </Container>
