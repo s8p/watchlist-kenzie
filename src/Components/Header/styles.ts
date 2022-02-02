@@ -53,13 +53,13 @@ export const Container = styled.div`
       @media (min-width: 600px) {
         display: flex;
         justify-content: space-between;
-        width: 200px;
         padding-right: 30px;
       }
 
       a {
         color: white;
         text-decoration: none;
+        padding-right: 15px;
       }
     }
     .logo_mobile {
