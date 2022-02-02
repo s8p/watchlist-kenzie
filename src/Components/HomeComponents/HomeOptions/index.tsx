@@ -17,7 +17,9 @@ const HomeOptions = () => {
           Register
         </HomeButton>
       </div>
-      <Link to="/aboutus">About Us</Link>
+      <Link className="link" to="/aboutus">
+        About Us
+      </Link>
     </Container>
   );
 };

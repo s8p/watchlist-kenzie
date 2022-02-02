@@ -14,7 +14,7 @@ export const Container = styled.div`
     left: 0;
     padding: 0px;
     .image_container {
-      transform: rotate(-19.5deg);
+      transform: scale(1.5);
       img {
         width: 360px;
       }

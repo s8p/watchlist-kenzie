@@ -1,5 +1,6 @@
 import { Container } from "./style";
-import Logo from "Assets/Logo.png";
+import Logo from "Assets/Logo 2E.png";
+
 const HomeLogo = () => {
   return (
     <Container>

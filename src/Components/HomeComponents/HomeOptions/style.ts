@@ -22,6 +22,10 @@ export const Container = styled.div`
     text-align: center;
     letter-spacing: -0.02em;
     color: #f7d633;
+
+    :hover {
+      font-weight: bold;
+    }
   }
 
   h1 {
