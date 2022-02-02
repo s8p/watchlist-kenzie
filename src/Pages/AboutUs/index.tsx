@@ -114,6 +114,7 @@ const Aboutus = () => {
         <CardContainer>
           {devList.map((dev) => (
             <Card
+              key={dev.name}
               name={dev.name}
               q1={dev.q1}
               q2={dev.q2}
