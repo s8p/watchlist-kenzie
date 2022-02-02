@@ -1,9 +1,12 @@
 import { Container } from "./style";
 import SearchIcon from "@mui/icons-material/Search";
+import { ButtonHTMLAttributes } from "react";
 
-const ButtonSearch = () => {
+interface ButtonSearchProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
+
+const ButtonSearch = ({ ...rest }: ButtonSearchProps) => {
   return (
-    <Container>
+    <Container {...rest}>
       <SearchIcon />
     </Container>
   );

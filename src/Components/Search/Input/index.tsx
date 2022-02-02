@@ -1,7 +1,10 @@
+import { InputHTMLAttributes } from "react";
 import { Container } from "./style";
 
-const InputSearch = () => {
-  return <Container placeholder="Search"></Container>;
+interface InputSearchProps extends InputHTMLAttributes<HTMLInputElement> {}
+
+const InputSearch = ({ ...rest }: InputSearchProps) => {
+  return <Container placeholder="Search" {...rest}></Container>;
 };
 
 export default InputSearch;

@@ -6,7 +6,7 @@ import {
   useContext,
   useState,
 } from "react";
-import { userApi } from "Services/api";
+import { tmdbApi, userApi } from "Services/api";
 
 interface User {
   email: string;
@@ -65,6 +65,9 @@ interface UserContextProps {
   removeSerie: (serie: MySeries) => void;
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  search: Serie[];
+  setSearch: React.Dispatch<React.SetStateAction<Serie[]>>;
+  searchSerie: (name: string) => void;
 }
 
 const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -72,6 +75,7 @@ const UserContext = createContext<UserContextProps>({} as UserContextProps);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [search, setSearch] = useState<Serie[]>([]);
 
   const getUserData = useCallback(async () => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -82,6 +86,16 @@ export const UserProvider = ({ children }: UserProviderProps) => {
 
     setUser(response.data);
   }, []);
+
+  const searchSerie = async (name: string) => {
+    const newName = name.replaceAll(" ", "%20");
+    const responseTv = await tmdbApi.get(`/search/tv?query=${newName}`);
+    // const responseMovie = await tmdbApi.get(`/search/movie?query=${newName}`);
+
+    const newList = [...responseTv.data.results];
+
+    setSearch(newList);
+  };
 
   const addSerie = async (serie: Serie) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -140,6 +154,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         removeSerie,
         mobileOpen,
         setMobileOpen,
+        searchSerie,
+        search,
+        setSearch,
       }}
     >
       {children}

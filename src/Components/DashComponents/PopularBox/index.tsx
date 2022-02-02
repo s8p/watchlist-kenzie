@@ -7,8 +7,6 @@ import { Container } from "./style";
 const PopularBox = () => {
   const { popular } = useTmdb();
 
-  console.log("popular", popular);
-
   return (
     <Container>
       {popular.map((element, index) => (
