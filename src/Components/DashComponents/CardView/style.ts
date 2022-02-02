@@ -20,14 +20,20 @@ export const Container = styled.div`
     width: 240px;
 
     div {
-      background: linear-gradient(
+      /* background: linear-gradient(
         to bottom,
         rgba(255, 0, 0, 0) 0%,
-        rgba(10, 10, 40, 1) 70%
-      );
+        rgba(10, 10, 40, 1) 40%
+      ); */
+      height: 150px;
 
-      padding-top: 40px;
-      height: 130px;
+      p {
+        padding-top: 12px;
+      }
+
+      > div {
+        padding-top: 0px;
+      }
     }
   }
 `;
@@ -42,6 +48,9 @@ export const Title = styled.div`
   border-top-right-radius: 40%;
   border-top-left-radius: 40%;
 
+  display: flex;
+  flex-direction: column;
+
   padding-top: 12px;
   width: 100%;
   height: 50px;
@@ -53,8 +62,22 @@ export const Title = styled.div`
   transition: 0.7s;
 
   position: absolute;
+  p {
+    margin-top: 12px;
+  }
 
-  button {
-    margin-top: 30px;
+  > div {
+    padding-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    section {
+      width: 155px;
+
+      button {
+        color: var(--black);
+      }
+    }
   }
 `;

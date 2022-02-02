@@ -1,13 +1,15 @@
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
+
 import FormsHeader from "../FormsComponents/FormsHeader";
 import { FormsInput } from "../FormsComponents/FormsInput";
-import { Container, SmallContainer } from "./style";
-import FormsButton from "../FormsComponents/FormsButton";
-import { Link } from "react-router-dom";
 import { useAuth } from "Context/Auth";
-import { useHistory } from "react-router";
+import Button from "Components/Button";
+
+import { Container, SmallContainer } from "./style";
 
 interface UserData {
   email: string;
@@ -52,7 +54,7 @@ const FormLogin = () => {
             {...register("password")}
             errorMessage={errors.password?.message}
           />
-          <FormsButton>Sing In</FormsButton>
+          <Button>Sing In</Button>
         </form>
         <div className="links_login">
           <p>
