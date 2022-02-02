@@ -1,4 +1,5 @@
 import { UseUser } from "Context/User";
+import { memo } from "react";
 import { Container, Title } from "./style";
 
 interface ProductProps {
@@ -36,4 +37,4 @@ const CardView = ({ content }: CardViewProps) => {
   );
 };
 
-export default CardView;
+export default memo(CardView);
