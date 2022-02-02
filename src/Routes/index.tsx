@@ -16,7 +16,7 @@ const Routes = () => {
       <Route path="/register" component={Register} />
       <Route path="/mylist" component={Mylist} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
-      <Route path="/aboutus" component={Aboutus} />
+      <Route path="/aboutus" component={Aboutus} isPrivate />
     </Switch>
   );
 };
