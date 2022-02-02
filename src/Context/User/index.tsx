@@ -63,6 +63,10 @@ interface UserContextProps {
   getUserData: () => void;
   addSerie: (serie: Serie) => void;
   removeSerie: (serie: MySeries) => void;
+  startWatching: (serieId: number) => void;
+  finishWatching: (serieId: number) => void;
+  resetWatched: (serieId: number) => void;
+
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -130,6 +134,30 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       getUserData();
     }
   };
+  const patchSeries = async (
+    id: number,
+    newStatus: "watching" | "notWatched" | "watched"
+  ) => {
+    const token = localStorage.getItem("@WatchList:Token") || "";
+    const newToken = JSON.parse(token);
+    await userApi.patch(
+      `/watchlist/${id}`,
+      { status: newStatus },
+      {
+        headers: { Authorization: `Bearer ${newToken}` },
+      }
+    );
+    getUserData();
+  };
+  const startWatching = (serieId: number) => {
+    patchSeries(serieId, "watching");
+  };
+  const finishWatching = (serieId: number) => {
+    patchSeries(serieId, "watched");
+  };
+  const resetWatched = (serieId: number) => {
+    patchSeries(serieId, "notWatched");
+  };
 
   return (
     <UserContext.Provider
@@ -140,6 +168,9 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         removeSerie,
         mobileOpen,
         setMobileOpen,
+        startWatching,
+        finishWatching,
+        resetWatched,
       }}
     >
       {children}
