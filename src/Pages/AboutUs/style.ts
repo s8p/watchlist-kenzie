@@ -62,6 +62,7 @@ export const DescriptionContainer = styled.div`
     align-items: baseline;
     justify-content: space-between;
     > h3 {
+      margin: 40px 0px;
       font-size: 40px;
       font-family: "Bungee", cursive;
     }
@@ -70,6 +71,7 @@ export const DescriptionContainer = styled.div`
     color: var(--white);
     font-size: 24px;
     font-family: "Work Sans", sans-serif;
+    margin-bottom: 40px;
     > span {
       font-family: "Bungee", cursive;
       color: var(--yellow);
