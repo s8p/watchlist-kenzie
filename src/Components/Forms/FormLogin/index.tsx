@@ -58,7 +58,7 @@ const FormLogin = () => {
         </form>
         <div className="links_login">
           <p>
-            Create a new <Link to="/register">acount</Link>
+            Create a new <Link to="/register">account</Link>
           </p>
           <Link to="/aboutus">About Us</Link>
         </div>
