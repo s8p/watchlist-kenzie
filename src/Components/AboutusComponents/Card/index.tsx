@@ -1,6 +1,7 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "@mui/material/Link";
 import { Container, CardInfo } from "./style";
+import LinkedInIcon from "@mui/icons-material/LinkedIn";
+import GitHubIcon from "@mui/icons-material/GitHub";
 
 interface CardProps {
   name: string;
@@ -29,9 +30,17 @@ const Card = ({
     <Container>
       <header>
         <h3>{name}</h3>
+        <div>
+          <Link href={linkedIn}>
+            <LinkedInIcon />
+          </Link>
+          <Link href={gitHub}>
+            <GitHubIcon />
+          </Link>
+        </div>
       </header>
       <CardInfo>
-        <ul>
+        <ul className="list">
           <li>{q1}</li>
           <li>{q2}</li>
           <li>{q3}</li>
@@ -40,11 +49,7 @@ const Card = ({
         </ul>
         <img src={picture} alt="foto do dev" />
       </CardInfo>
-      <footer>
-        <Link to={linkedIn}>LinkedIn</Link>
-
-        <Link to={gitHub}>gitHub</Link>
-      </footer>
+      <footer></footer>
     </Container>
   );
 };

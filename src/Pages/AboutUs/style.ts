@@ -32,7 +32,6 @@ export const MainBox = styled.div`
   height: calc(100% - 70px);
   margin-left: 115px;
   margin-right: 115px;
-  background-color: var(--white);
   > header {
     font-size: 40px;
     width: 100%;
@@ -44,29 +43,38 @@ export const MainBox = styled.div`
   }
 `;
 export const DescriptionContainer = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: red;
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: left;
   margin-top: 33px;
-  > h3 {
-    padding: 20px;
-    padding-left: 80px;
-    font-size: 40px;
+  padding: 20px;
+  padding-left: 80px;
+  color: var(--yellow);
+  > header {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    > h3 {
+      font-size: 40px;
+      font-family: "Bungee", cursive;
+    }
   }
   > p {
-    padding: 20px;
-    padding-left: 80px;
+    color: var(--white);
     font-size: 24px;
+    font-family: "Work Sans", sans-serif;
+  }
+
+  .Return {
+    margin-bottom: 30px;
   }
 `;
 
 export const CardContainer = styled.div`
-  /* padding-left: 80px;
-  padding-right: 80px; */
   margin-top: 33px;
   gap: 10px;
   display: flex;
@@ -75,4 +83,5 @@ export const CardContainer = styled.div`
   justify-content: center;
   flex: 1;
   overflow: auto;
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 `;
