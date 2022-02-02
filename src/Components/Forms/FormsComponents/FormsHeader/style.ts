@@ -13,6 +13,9 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
   }
+  img {
+    transform: scale(0.8);
+  }
   @media (min-width: 700px) {
     background: white;
   }

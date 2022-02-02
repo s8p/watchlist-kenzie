@@ -1,5 +1,5 @@
 import { Container } from "./style";
-import Logo from "../../../../Assets/Logo.png";
+import Logo from "../../../../Assets/Logo 1.png";
 
 const FormsHeader = () => {
   return (
