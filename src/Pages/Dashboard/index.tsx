@@ -6,10 +6,10 @@ import { Container, DashboardBox } from "./style";
 import Header from "Components/Header";
 import MenuMobile from "Components/MenuMobile";
 import { UseUser } from "Context/User";
+import Search from "Components/Search";
 
 const Dashboard = () => {
-  const { mobileOpen, user } = UseUser();
-  console.log(user);
+  const { mobileOpen } = UseUser();
   return (
     <>
       <Container>
@@ -18,6 +18,7 @@ const Dashboard = () => {
           <header>
             <Header />
           </header>
+          <Search />
           <RandomBox />
           <section>
             <TopRatedBox />
