@@ -140,6 +140,19 @@ export const Container = styled.div`
           padding: 0 4px 0 4px;
           font-size: 1.5rem;
           overflow-y: scroll;
+          margin: 0 16px;
+
+          ::-webkit-scrollbar {
+            width: 6px;
+          }
+          ::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 100px;
+          }
+          ::-webkit-scrollbar-thumb {
+            background-color: var(--gray);
+            border-radius: 100px;
+          }
 
           @media (max-width: 1024px) {
             height: 180px;
