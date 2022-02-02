@@ -39,6 +39,11 @@ export const SmallContainer = styled.div`
     align-items: center;
     justify-content: space-between;
     height: 300px;
+
+    button {
+      width: 280px;
+      height: 40px;
+    }
   }
   .links_login {
     width: 300px;
