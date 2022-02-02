@@ -7,10 +7,23 @@ export const Container = styled.div`
   overflow-x: scroll;
   gap: 10px;
   align-items: center;
-  /* padding: 0px 20px 0px 20px; */
   border-radius: 8px;
-  /* opacity: 0.1; */
-  /* position: relative; */
+  
+  padding: 0px 40px;
+
+
+  ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: transparent;
+      border-radius: 100px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--gray);
+      border-radius: 100px;
+    }
 
   
   }
