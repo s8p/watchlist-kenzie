@@ -1,4 +1,7 @@
 import { UseUser } from "Context/User";
+
+import Button from "Components/Button";
+
 import { Container, Title } from "./style";
 
 interface ProductProps {
@@ -31,6 +34,7 @@ const CardView = ({ content }: CardViewProps) => {
       <Title>
         <p>{content.name}</p>
         <button onClick={() => addSerie(content)}>Adicionar</button>
+        {/* <Button onClick={() => addSerie(content)}>Adicionar</Button> */}
       </Title>
     </Container>
   );

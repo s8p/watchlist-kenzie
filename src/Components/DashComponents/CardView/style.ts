@@ -27,7 +27,7 @@ export const Container = styled.div`
       );
 
       padding-top: 40px;
-      height: 130px;
+      height: 150px;
     }
   }
 `;
@@ -49,11 +49,12 @@ export const Title = styled.div`
   color: var(--white);
   overflow: hidden;
 
-  transition: 0.5s;
+  transition: 0.7s;
 
   position: absolute;
 
   button {
+    color: var(--black);
     margin-top: 30px;
   }
 `;
