@@ -22,6 +22,16 @@ export const Container = styled.button`
   align-items: center;
   justify-content: center;
   z-index: 1;
+
+  :hover {
+    background: var(--grey);
+    border: 3px solid var(--yellow);
+    color: var(--yellow);
+  }
+
+  :active {
+    transform: translateY(2px);
+  }
   @media (min-width: 1200px) {
     width: 150px;
     height: 50px;
