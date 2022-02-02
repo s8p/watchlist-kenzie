@@ -1,4 +1,5 @@
 import { useTmdb } from "Context/Series";
+import { memo } from "react";
 
 import { Container } from "./style";
 
@@ -54,4 +55,4 @@ const RandomBox = () => {
   );
 };
 
-export default RandomBox;
+export default memo(RandomBox);
