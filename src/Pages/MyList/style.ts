@@ -34,10 +34,8 @@ export const MyListBox = styled.div`
   min-width: 320px;
   max-width: 1600px;
   margin-top: 30px;
-  color: white;
-  input,
-  button {
-    margin-top: 20px;
+  .search_container {
+    padding: 20px;
   }
 `;
 
@@ -46,25 +44,13 @@ export const ButtonBar = styled.div`
   margin: 2rem 0;
   width: 100%;
   justify-content: center;
+  gap: 16px;
 
   button {
     width: 100px;
-    background-color: var(--yellow);
-    color: var(--black);
-    border: 2px solid var(--yellow);
-    padding: 1px 3em;
-    font-weight: 700;
-
     @media (min-width: 500px) {
-      width: 150px;
+      width: 200px;
     }
-
-    &:hover {
-      border-color: var(--black);
-    }
-  }
-  button + button {
-    margin-left: 2rem;
   }
 `;
 

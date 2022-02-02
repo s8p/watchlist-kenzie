@@ -1,5 +1,7 @@
-import { useTmdb } from "Context/Series";
 import { memo } from "react";
+
+import { useTmdb } from "Context/Series";
+import Button from "Components/Button";
 
 import { Container } from "./style";
 
@@ -44,7 +46,7 @@ const RandomBox = () => {
           {!!overview !== false ? <p>{overview}</p> : <p>{title}</p>}
         </section>
         <div>
-          <button>details</button>
+          <Button>More details</Button>
         </div>
       </div>
     </Container>

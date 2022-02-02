@@ -1,4 +1,5 @@
-import { Button } from "@mui/material";
+import Button from "Components/Button";
+
 import { UseUser } from "Context/User";
 import { Container } from "./styles";
 
@@ -45,7 +46,6 @@ const MyListItem = ({ content }: MyLitItemProps) => {
           <div className="buttonBar">
             <Button>Já assisti</Button>
             <Button onClick={() => removeSerie(content)}>Remover</Button>
-            {/* <Button>Detalhes</Button> */}
           </div>
         </div>
       </section>

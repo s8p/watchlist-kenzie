@@ -122,6 +122,7 @@ export const Container = styled.div`
 
       .text {
         display: none;
+        color: var(--white);
 
         @media (min-width: 500px) {
           display: flex;
@@ -139,6 +140,19 @@ export const Container = styled.div`
           padding: 0 4px 0 4px;
           font-size: 1.5rem;
           overflow-y: scroll;
+          margin: 0 16px;
+
+          ::-webkit-scrollbar {
+            width: 6px;
+          }
+          ::-webkit-scrollbar-track {
+            background-color: transparent;
+            border-radius: 100px;
+          }
+          ::-webkit-scrollbar-thumb {
+            background-color: var(--gray);
+            border-radius: 100px;
+          }
 
           @media (max-width: 1024px) {
             height: 180px;
@@ -175,37 +189,6 @@ export const Container = styled.div`
           flex-direction: row-reverse;
         }
 
-        button {
-          box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px,
-            rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px,
-            rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
-
-          margin-bottom: 8px;
-
-          height: 30px;
-          width: 100px;
-          background-color: var(--yellow);
-          color: var(--black);
-          border: 2px solid var(--yellow);
-          padding-top: 1px;
-          padding-bottom: 1px;
-          font-weight: 700;
-
-          &:hover {
-            border-color: var(--black);
-            background-color: var(--white);
-          }
-
-          /* #details {
-            background: orange;
-          } */
-        }
-        /* button + button {
-          margin-top: 10px;
-          @media (min-width: 768px) {
-            margin-top: 0;
-          }
-        } */
         @media (min-width: 768px) {
           flex-direction: row;
         }

@@ -1,4 +1,4 @@
-import { Button } from "@mui/material";
+import Button from "Components/Button";
 import Header from "Components/Header";
 import { ButtonBar, List, Container, MyListBox } from "./style";
 import MenuMobile from "Components/MenuMobile";
@@ -20,7 +20,9 @@ const Mylist = () => {
       <div className="opacity_container"></div>
       <MyListBox>
         <Header />
-        <Search />
+        <div className="search_container">
+          <Search />
+        </div>
         <ButtonBar>
           {search.length < 1 ? (
             <>

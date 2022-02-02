@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.button`
-  width: 120px;
+  display: flex;
+  width: 60px;
   height: 40px;
   background: #f7d633;
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
@@ -18,6 +19,17 @@ export const Container = styled.button`
   color: #000000;
   align-self: flex-end;
   margin: 2px;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  :hover {
+    background: var(--grey);
+    border: 3px solid var(--yellow);
+    color: var(--yellow);
+  }
+  :active {
+    transform: translateY(2px);
+  }
   @media (min-width: 1200px) {
     width: 150px;
     height: 50px;
