@@ -42,6 +42,7 @@ export const Title = styled.div`
   border-top-right-radius: 40%;
   border-top-left-radius: 40%;
 
+  padding-top: 12px;
   width: 100%;
   height: 50px;
   text-align: center;
@@ -49,7 +50,7 @@ export const Title = styled.div`
   color: var(--white);
   overflow: hidden;
 
-  transition: 0.5s;
+  transition: 0.7s;
 
   position: absolute;
 
