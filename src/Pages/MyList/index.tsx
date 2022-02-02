@@ -3,9 +3,15 @@ import Header from "Components/Header";
 import { ButtonBar, List, Container, MyListBox } from "./style";
 import MenuMobile from "Components/MenuMobile";
 import { UseUser } from "Context/User";
+import MyListItem from "Components/MyListComponents/ListItem";
+import { useEffect } from "react";
 
 const Mylist = () => {
-  const { mobileOpen } = UseUser();
+  const { mobileOpen, user, getUserData } = UseUser();
+  useEffect(() => {
+    getUserData();
+    console.log("list", user.watchlist);
+  }, [getUserData]);
 
   return (
     <Container>
@@ -16,7 +22,12 @@ const Mylist = () => {
           <Button>Todos</Button>
           <Button>Vistos</Button>
         </ButtonBar>
-        <List></List>
+        <List>
+          {user.watchlist &&
+            user.watchlist.map((serie, index) => (
+              <MyListItem content={serie} key={index} />
+            ))}
+        </List>
         {mobileOpen && <MenuMobile />}
       </MyListBox>
     </Container>

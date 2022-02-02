@@ -1,20 +1,22 @@
-import { Button } from "@mui/material";
+import Button from "Components/Button";
+
+import { UseUser } from "Context/User";
 import { Container } from "./styles";
 
 interface ProductProps {
   backdrop_path: string;
   first_air_date: string;
-  genre_ids: number;
   id: number;
   name: string;
-  origin_country: string;
+  origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
-  popularity: number;
   poster_path: string;
   vote_average: number;
-  vote_count: number;
+  liked: boolean;
+  status: "watched" | "watching" | "notWatched";
+  idTmdb: number;
 }
 
 interface MyLitItemProps {
@@ -22,6 +24,7 @@ interface MyLitItemProps {
 }
 const MyListItem = ({ content }: MyLitItemProps) => {
   const image = `//www.themoviedb.org/t/p/w600_and_h900_bestv2/${content.poster_path}`;
+  const { removeSerie } = UseUser();
   return (
     <Container>
       <section>
@@ -42,8 +45,7 @@ const MyListItem = ({ content }: MyLitItemProps) => {
 
           <div className="buttonBar">
             <Button>Já assisti</Button>
-            <Button>Remover</Button>
-            {/* <Button>Detalhes</Button> */}
+            <Button onClick={() => removeSerie(content)}>Remover</Button>
           </div>
         </div>
       </section>

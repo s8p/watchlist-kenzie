@@ -74,11 +74,7 @@ export const Container = styled.div`
       );
 
       > button {
-        color: white;
         font-size: 1.3rem;
-        background: orange;
-        width: 100px;
-        height: 30px;
 
         @media (max-width: 450px) {
           display: none;

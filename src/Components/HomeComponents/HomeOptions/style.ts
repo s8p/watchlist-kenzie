@@ -40,6 +40,20 @@ export const Container = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-around;
+
+    @media (min-width: 1200px) {
+      display: flex;
+      gap: 8px;
+    }
+
+    button {
+      width: 120px;
+      height: 40px;
+
+      @media (min-width: 1200px) {
+        width: 220px;
+      }
+    }
   }
   @media (min-width: 1200px) {
     position: absolute;

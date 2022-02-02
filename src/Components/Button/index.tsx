@@ -8,9 +8,9 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const Button = ({ children, ...rest }: ButtonProps) => {
   return (
-    // <ButtonContainer>
-    <ButtonBox {...rest}>{children}</ButtonBox>
-    // </ButtonContainer>
+    <ButtonContainer>
+      <ButtonBox {...rest}>{children}</ButtonBox>
+    </ButtonContainer>
   );
 };
 

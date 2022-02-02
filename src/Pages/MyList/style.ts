@@ -39,12 +39,9 @@ export const ButtonBar = styled.div`
   gap: 16px;
 
   button {
+    width: 100px;
     @media (min-width: 500px) {
-      width: 150px;
-    }
-
-    &:hover {
-      border-color: var(--black);
+      width: 200px;
     }
   }
 `;
