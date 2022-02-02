@@ -103,12 +103,14 @@ const Aboutus = () => {
                 <ArrowBackIosIcon />
               </HomeButton>
             )}
-          </header>{" "}
+          </header>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi ullam
-            nemo corrupti illum explicabo laboriosam distinctio vitae ea
-            deserunt cum, qui molestiae nam, placeat autem eius laborum impedit
-            nisi! Quasi?
+            The <span>watchlist </span>
+            is a plataform built to assist users to track their favorite shows ,
+            movies and make sure they keep track of that film a friend
+            recommended. However who build it ? Who maintains it ? Here you will
+            find a brief profile of all the developers involved in the creation
+            and maintenace of the plataform.
           </p>
         </DescriptionContainer>
         <CardContainer>

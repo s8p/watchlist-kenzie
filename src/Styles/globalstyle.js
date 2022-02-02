@@ -4,6 +4,11 @@ export const GlobalStyles = () => (
   <Global
     styles={css`
       html,
+      html::-webkit-scrollbar {
+        width: 1px;
+        color: purple;
+      }
+      ,
       body,
       div,
       span,

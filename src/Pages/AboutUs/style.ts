@@ -52,7 +52,9 @@ export const DescriptionContainer = styled.div`
   margin-top: 33px;
   padding: 20px;
   padding-left: 80px;
+  padding-right: 80px;
   color: var(--yellow);
+  border-radius: 15px;
   > header {
     display: flex;
     flex-direction: row;
@@ -67,6 +69,10 @@ export const DescriptionContainer = styled.div`
     color: var(--white);
     font-size: 24px;
     font-family: "Work Sans", sans-serif;
+    > span {
+      font-family: "Bungee", cursive;
+      color: var(--yellow);
+    }
   }
 
   .Return {
