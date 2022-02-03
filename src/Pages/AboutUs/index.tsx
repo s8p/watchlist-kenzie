@@ -105,10 +105,10 @@ const Aboutus = () => {
             </header>
             <p>
               The <span>watchlist </span>
-              is a plataform built to assist users to track their favorite shows
-              , movies and make sure they keep track of that film a friend
-              recommended. However who build it ? Who maintains it ? Here you
-              will find a brief profile of all the developers involved in the
+              is a plataform built to assist users to track their favorite
+              shows, movies and make sure they keep track of that film a friend
+              recommended. However who build it? Who maintains it? Here you will
+              find a brief profile of all the developers involved in the
               creation and maintenace of the plataform.
             </p>
           </DescriptionContainer>
