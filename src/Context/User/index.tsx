@@ -4,6 +4,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { tmdbApi, userApi } from "Services/api";
@@ -46,14 +47,17 @@ interface Serie {
 interface MySeries {
   backdrop_path: string;
   first_air_date: string;
+  genre_ids: number[];
   id: number;
   name: string;
   origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
+  popularity: number;
   poster_path: string;
   vote_average: number;
+  vote_count: number;
   liked: boolean;
   status: "watched" | "watching" | "notWatched";
   idTmdb: number;
@@ -62,13 +66,14 @@ interface UserContextProps {
   user: User;
   getUserData: () => void;
   addSerie: (serie: Serie) => void;
-  removeSerie: (serie: MySeries) => void;
+  removeSerie: (serie: MySeries | Serie) => void;
   startWatching: (serieId: number) => void;
   finishWatching: (serieId: number) => void;
   resetWatched: (serieId: number) => void;
 
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  lista: MySeries[];
   search: Serie[];
   setSearch: React.Dispatch<React.SetStateAction<Serie[]>>;
   searchSerie: (name: string) => void;
@@ -79,6 +84,7 @@ const UserContext = createContext<UserContextProps>({} as UserContextProps);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [lista, setLista] = useState([]);
   const [search, setSearch] = useState<Serie[]>([]);
 
   const getUserData = useCallback(async () => {
@@ -89,8 +95,14 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     );
 
     setUser(response.data);
+    setLista(response.data.watchlist);
   }, []);
 
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  console.log("lista provider", lista);
   const searchSerie = async (name: string) => {
     const newName = name.replaceAll(" ", "%20");
     const responseTv = await tmdbApi.get(`/search/tv?query=${newName}`);
@@ -115,6 +127,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       overview,
       poster_path,
       vote_average,
+      popularity,
     } = serie;
     const newSerie = {
       backdrop_path,
@@ -123,6 +136,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       origin_country,
       original_name,
       original_language,
+      popularity,
       overview,
       poster_path,
       vote_average,
@@ -137,7 +151,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     getUserData();
   };
 
-  const removeSerie = async (serie: MySeries) => {
+  const removeSerie = async (serie: MySeries | Serie) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
     const newToken = JSON.parse(token);
     const serieDeleted = user.watchlist.find((s) => s.name === serie.name);
@@ -182,15 +196,13 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         removeSerie,
         mobileOpen,
         setMobileOpen,
-<<<<<<< HEAD
+        lista,
         startWatching,
         finishWatching,
         resetWatched,
-=======
         searchSerie,
         search,
         setSearch,
->>>>>>> fe6777d04211b8fe212ea2beeb9b1f14849df185
       }}
     >
       {children}

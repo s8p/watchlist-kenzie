@@ -1,55 +1,64 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 
-import { useTmdb } from "Context/Series";
 import Button from "Components/Button";
+import ShowModal from "Components/MyListComponents/ShowModal";
 
 import { Container } from "./style";
 
-const RandomBox = () => {
-  const { popular /*TvShow*/ } = useTmdb();
+interface ProductProps {
+  backdrop_path: string;
+  first_air_date: string;
+  genre_ids: number[];
+  id: number;
+  name: string;
+  origin_country: string[];
+  original_language: string;
+  original_name: string;
+  overview: string;
+  popularity: number;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+}
 
-  let imageBanner;
-  let banner;
-  let imagePoster;
-  let poster;
-  let overview;
-  let title;
+interface ContentProps {
+  content: ProductProps;
+}
 
-  const RandomPoster = async () => {
-    const RandomNumber = Math.round(Math.random() * popular.length);
-    const TvShow = popular[RandomNumber];
-
-    banner = TvShow.backdrop_path;
-    poster = TvShow.poster_path;
-
-    if (banner === null || undefined) {
-      RandomPoster();
-    } else {
-      imageBanner = `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${banner}`;
-      imagePoster = `//www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster}`;
-      overview = TvShow.overview;
-      title = TvShow.name;
-    }
-  };
-
-  if (popular.length > 0) {
-    RandomPoster();
-  }
+const RandomBox = ({ content }: ContentProps) => {
+  const [isOpen, setOpen] = useState(false);
 
   return (
-    <Container>
-      <img src={imagePoster} alt="poster" id="poster" />
-      <img src={imageBanner} alt="banner" id="banner" />
-      <div>
-        <section>
-          <h1>{title}</h1>
-          {!!overview !== false ? <p>{overview}</p> : <p>{title}</p>}
-        </section>
+    <>
+      {isOpen && (
+        <ShowModal content={content} isOpen={isOpen} setOpen={setOpen} />
+      )}
+      <Container>
+        <img
+          src={`//www.themoviedb.org/t/p/w600_and_h900_bestv2/${content.poster_path}`}
+          alt="poster"
+          id="poster"
+        />
+        <img
+          src={`https://www.themoviedb.org/t/p/w533_and_h300_bestv2${content.backdrop_path}`}
+          alt="banner"
+          id="banner"
+        />
         <div>
-          <Button>More details</Button>
+          <section>
+            <h1>{content.name}</h1>
+            {!!content.overview !== false ? (
+              <p>{content.overview}</p>
+            ) : (
+              <p>{content.name}</p>
+            )}
+          </section>
+          <div>
+            <Button onClick={() => setOpen(true)}>More details</Button>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 };
 

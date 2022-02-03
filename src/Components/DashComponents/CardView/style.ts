@@ -59,6 +59,8 @@ export const Title = styled.div`
   color: var(--white);
   overflow: hidden;
 
+  /* background: orange; */
+
   transition: 0.7s;
 
   position: absolute;
