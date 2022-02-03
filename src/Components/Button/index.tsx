@@ -1,17 +1,13 @@
-import { ButtonHTMLAttributes, ReactNode, MutableRefObject } from "react";
+import { ButtonHTMLAttributes, ReactNode, MutableRefObject } from 'react'
 
-import { ButtonContainer, ButtonBox } from "./style";
+import { ButtonContainer, ButtonBox } from './style'
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
+  children: ReactNode
 }
 
 const Button = ({ children, ...rest }: ButtonProps) => {
-  return (
-    <ButtonContainer>
-      <ButtonBox {...rest}>{children}</ButtonBox>
-    </ButtonContainer>
-  );
-};
+  return <ButtonBox {...rest}>{children}</ButtonBox>
+}
 
-export default Button;
+export default Button

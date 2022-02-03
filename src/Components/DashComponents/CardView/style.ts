@@ -1,4 +1,5 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled'
+import { motion } from 'framer-motion'
 
 export const Container = styled.div`
   width: 200px;
@@ -36,7 +37,7 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`
 
 export const Title = styled.div`
   background: linear-gradient(
@@ -82,4 +83,49 @@ export const Title = styled.div`
       }
     }
   }
-`;
+`
+
+export const Container2 = styled(motion.div)`
+  width: 200px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  cursor: pointer;
+`
+export const InfoBox = styled(motion.div)`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 70% 1em 1em 1em;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 60%);
+  .button-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .info-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    .rating,
+    .flag {
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      margin-bottom: 1rem;
+      font-size: 15px;
+      gap: 5px;
+      cursor: default;
+    }
+  }
+  svg {
+    width: 40px;
+    height: 40px;
+  }
+`
