@@ -35,7 +35,7 @@ export const DashboardBox = styled.div`
   /* height: 900px; */
   /* background: var(--gray); */
   margin-top: 30px;
-
+  margin: 30px 115px 115px 30px;
   display: flex;
   flex-direction: column;
   height: 100%;

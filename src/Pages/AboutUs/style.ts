@@ -34,7 +34,7 @@ export const MainBox = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: calc(100% - 70px);
+  height: calc(100% - 60px);
   margin-left: 115px;
   margin-right: 115px;
   > header {
@@ -58,7 +58,7 @@ export const DescriptionContainer = styled.div`
   align-items: left;
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
-  margin-top: 33px;
+  margin-top: 30px;
   padding: 20px;
   padding-left: 30px;
   padding-right: 30px;
@@ -108,5 +108,4 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  /* Hide horizontal scrollbar */
 `;

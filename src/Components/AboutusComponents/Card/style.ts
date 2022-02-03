@@ -1,17 +1,4 @@
-import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-
-const rotateAnimation = keyframes`
- 0% {
-  transform: rotateY(0deg);
-} 
-50% {
-  transform: rotateY(180deg);
-}
-100% {
-  transform: rotateY(360deg);
-}
-`;
 
 export const Container = styled.div`
   display: flex;
@@ -37,9 +24,6 @@ export const Container = styled.div`
     width: 40%;
     display: flex;
     justify-content: space-around;
-  }
-  :hover {
-    animation: ${rotateAnimation} 1s linear;
   }
 `;
 
