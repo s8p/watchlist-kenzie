@@ -33,7 +33,7 @@ export const MyListBox = styled.div`
   width: 100%;
   min-width: 320px;
   max-width: 1600px;
-  margin-top: 30px;
+  margin: 30px 115px 30px 115px;
   .search_container {
     padding: 20px;
   }
