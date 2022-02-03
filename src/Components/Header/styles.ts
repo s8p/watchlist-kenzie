@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   width: 100%;
-  /* max-width: 1690px; */
   height: 80px;
   display: flex;
   align-items: center;
@@ -16,6 +15,9 @@ export const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
+  span {
+    color: var(--yellow);
+  }
   svg {
     font-size: 60px;
   }
@@ -38,6 +40,7 @@ export const Container = styled.div`
       flex-direction: column;
       align-items: baseline;
       padding-left: 10px;
+      font-family: "Bungee", cursive;
     }
     svg {
       font-size: 60px;
@@ -59,7 +62,13 @@ export const Container = styled.div`
       a {
         color: white;
         text-decoration: none;
-        padding-right: 15px;
+        padding-right: 20px;
+        font-weight: bold;
+
+        :hover {
+          color: var(--yellow);
+          transform: scale(1.1);
+        }
       }
     }
     .logo_mobile {
@@ -67,5 +76,19 @@ export const Container = styled.div`
         width: 60px;
       }
     }
+  }
+  .active {
+    color: var(--yellow);
+  }
+`;
+
+export const HighlightSpan = styled.span`
+  margin-top: 6px;
+  color: var(--yellow);
+
+  :hover {
+    text-decoration: underline;
+    color: var(--white);
+    cursor: pointer;
   }
 `;
