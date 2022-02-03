@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-size: 80%;
   background-color: rgba(10, 23, 55, 0.5);
   display: flex;
+  flex-direction: columm;
   justify-content: center;
   align-items: center;
   .opacity_container {
@@ -22,6 +23,10 @@ export const Container = styled.div`
       rgba(0, 0, 0, 0.586053) 0.03%,
       #000000 99.99%
     );
+  }
+  .content {
+    overflow: auto;
+    overflow-x: hidden;
   }
 `;
 export const MainBox = styled.div`
@@ -87,6 +92,5 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  overflow: auto;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  /* Hide horizontal scrollbar */
 `;
