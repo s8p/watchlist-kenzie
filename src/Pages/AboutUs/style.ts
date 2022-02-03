@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-size: 80%;
   background-color: rgba(10, 23, 55, 0.5);
   display: flex;
+  flex-direction: columm;
   justify-content: center;
   align-items: center;
   .opacity_container {
@@ -23,6 +24,10 @@ export const Container = styled.div`
       #000000 99.99%
     );
   }
+  .content {
+    overflow: auto;
+    overflow-x: hidden;
+  }
 `;
 export const MainBox = styled.div`
   position: relative;
@@ -33,13 +38,16 @@ export const MainBox = styled.div`
   margin-left: 115px;
   margin-right: 115px;
   > header {
-    font-size: 40px;
+    font-size: 25px;
     width: 100%;
     height: 130px;
     background-color: red;
     display: flex;
     justify-content: center;
     align-items: center;
+    @media (min-width: 600) {
+      font-size: 40px;
+    }
   }
 `;
 export const DescriptionContainer = styled.div`
@@ -52,26 +60,39 @@ export const DescriptionContainer = styled.div`
   border-radius: 15px;
   margin-top: 33px;
   padding: 20px;
-  padding-left: 80px;
-  padding-right: 80px;
+  padding-left: 30px;
+  padding-right: 30px;
   color: var(--yellow);
   border-radius: 15px;
+  @media (min-width: 600) {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
   > header {
     display: flex;
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
     > h3 {
-      margin: 40px 0px;
-      font-size: 40px;
+      margin: 24px 0px;
+      font-size: 24px;
       font-family: "Bungee", cursive;
+      @media (min-width: 600) {
+        margin: 40px 0px;
+        font-size: 40px;
+      }
     }
   }
   > p {
     color: var(--white);
-    font-size: 24px;
+    font-size: 18px;
     font-family: "Work Sans", sans-serif;
-    margin-bottom: 40px;
+    margin-bottom: 25px;
+    text-align: left;
+    @media (min-width: 600) {
+      font-size: 24px;
+      margin-bottom: 40px;
+    }
     > span {
       font-family: "Bungee", cursive;
       color: var(--yellow);
@@ -87,6 +108,5 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-  overflow: auto;
-  overflow-x: hidden; /* Hide horizontal scrollbar */
+  /* Hide horizontal scrollbar */
 `;

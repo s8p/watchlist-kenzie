@@ -6,7 +6,6 @@ import {
 } from "./style";
 import Card from "Components/AboutusComponents/Card";
 import HomeButton from "Components/AboutusComponents/HomeButton";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import Header from "../../Components/Header";
@@ -25,7 +24,7 @@ const Aboutus = () => {
     gitHub: string;
     picture: string;
   }
-  const [devList, setDevList] = useState<Dev[]>([
+  const devList: Dev[] = [
     {
       name: "Thiago Trad",
       q1: "Kenzie Academy Student",
@@ -86,47 +85,50 @@ const Aboutus = () => {
       picture:
         "https://media-exp1.licdn.com/dms/image/D4D35AQH2Dchx5jbeCA/profile-framedphoto-shrink_800_800/0/1636396987374?e=1643875200&v=beta&t=W1R11CIevgmylv2CiP6E8cJRP6y9Ak12Kb6J1ruVd2I",
     },
-  ]);
+  ];
 
   return (
     <Container>
       <div className="opacity_container"></div>
+
       <MainBox>
         {authToken && <Header />}
-        <DescriptionContainer>
-          <header>
-            <h3> The Watchlist Team</h3>
-            {!authToken && (
-              <HomeButton className="Return" onClick={() => history.goBack()}>
-                <ArrowBackIosIcon />
-              </HomeButton>
-            )}
-          </header>
-          <p>
-            The <span>watchlist </span>
-            is a plataform built to assist users to track their favorite shows ,
-            movies and make sure they keep track of that film a friend
-            recommended. However who build it ? Who maintains it ? Here you will
-            find a brief profile of all the developers involved in the creation
-            and maintenace of the plataform.
-          </p>
-        </DescriptionContainer>
-        <CardContainer>
-          {devList.map((dev) => (
-            <Card
-              key={dev.name}
-              name={dev.name}
-              q1={dev.q1}
-              q2={dev.q2}
-              q3={dev.q3}
-              q4={dev.q4}
-              q5={dev.q5}
-              linkedIn={dev.linkedIn}
-              gitHub={dev.gitHub}
-              picture={dev.picture}
-            ></Card>
-          ))}
-        </CardContainer>
+        <section className="content">
+          <DescriptionContainer>
+            <header>
+              <h3> The Watchlist Team</h3>
+              {!authToken && (
+                <HomeButton className="Return" onClick={() => history.goBack()}>
+                  <ArrowBackIosIcon />
+                </HomeButton>
+              )}
+            </header>
+            <p>
+              The <span>watchlist </span>
+              is a plataform built to assist users to track their favorite
+              shows, movies and make sure they keep track of that film a friend
+              recommended. However who build it? Who maintains it? Here you will
+              find a brief profile of all the developers involved in the
+              creation and maintenace of the plataform.
+            </p>
+          </DescriptionContainer>
+          <CardContainer>
+            {devList.map((dev) => (
+              <Card
+                key={dev.name}
+                name={dev.name}
+                q1={dev.q1}
+                q2={dev.q2}
+                q3={dev.q3}
+                q4={dev.q4}
+                q5={dev.q5}
+                linkedIn={dev.linkedIn}
+                gitHub={dev.gitHub}
+                picture={dev.picture}
+              ></Card>
+            ))}
+          </CardContainer>
+        </section>
       </MainBox>
     </Container>
   );
