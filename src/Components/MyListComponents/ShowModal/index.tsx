@@ -29,9 +29,10 @@ interface ModalProps {
   content: ProductProps
   isOpen: boolean
   setOpen: (state: boolean) => void
+  added?: (bool: boolean) => void
 }
 
-const ShowModal = ({ content, isOpen, setOpen }: ModalProps) => {
+const ShowModal = ({ added, content, isOpen, setOpen }: ModalProps) => {
   const onClose = () => {
     setOpen(false)
   }
@@ -89,6 +90,9 @@ const ShowModal = ({ content, isOpen, setOpen }: ModalProps) => {
                 onClick={() => {
                   removeSerie(content)
                   setOpen(false)
+                  if(!!added){
+                    added(false)
+                    }
                 }}
               >
                 Remove
@@ -98,6 +102,9 @@ const ShowModal = ({ content, isOpen, setOpen }: ModalProps) => {
                 onClick={() => {
                   addSerie(content)
                   setOpen(false)
+                  if(!!added){
+                    added(true)
+                    }
                 }}
               >
                 Adicionar
