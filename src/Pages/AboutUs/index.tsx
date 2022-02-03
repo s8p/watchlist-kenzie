@@ -10,9 +10,12 @@ import { useHistory } from "react-router-dom";
 
 import Header from "../../Components/Header";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import MenuMobile from "Components/MenuMobile";
+import { UseUser } from "Context/User";
 const Aboutus = () => {
   const authToken = localStorage.getItem("@WatchList:Token");
   const history = useHistory();
+  const { mobileOpen } = UseUser();
   interface Dev {
     name: string;
     q1: string;
@@ -130,6 +133,7 @@ const Aboutus = () => {
           </CardContainer>
         </section>
       </MainBox>
+      {mobileOpen && <MenuMobile />}
     </Container>
   );
 };
