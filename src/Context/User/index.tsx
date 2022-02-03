@@ -4,6 +4,7 @@ import {
   ReactNode,
   useCallback,
   useContext,
+  useEffect,
   useState,
 } from "react";
 import { userApi } from "Services/api";
@@ -62,9 +63,10 @@ interface UserContextProps {
   user: User;
   getUserData: () => void;
   addSerie: (serie: Serie) => void;
-  removeSerie: (serie: MySeries) => void;
+  removeSerie: (serie: MySeries | Serie) => void;
   mobileOpen: boolean;
   setMobileOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  lista: MySeries[];
 }
 
 const UserContext = createContext<UserContextProps>({} as UserContextProps);
@@ -72,6 +74,7 @@ const UserContext = createContext<UserContextProps>({} as UserContextProps);
 export const UserProvider = ({ children }: UserProviderProps) => {
   const [user, setUser] = useState<User>({} as User);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [lista, setLista] = useState([]);
 
   const getUserData = useCallback(async () => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -81,7 +84,14 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     );
 
     setUser(response.data);
+    setLista(response.data.watchlist);
   }, []);
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  console.log("lista provider", lista);
 
   const addSerie = async (serie: Serie) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
@@ -119,7 +129,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
     getUserData();
   };
 
-  const removeSerie = async (serie: MySeries) => {
+  const removeSerie = async (serie: MySeries | Serie) => {
     const token = localStorage.getItem("@WatchList:Token") || "";
     const newToken = JSON.parse(token);
     const serieDeleted = user.watchlist.find((s) => s.name === serie.name);
@@ -140,6 +150,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
         removeSerie,
         mobileOpen,
         setMobileOpen,
+        lista,
       }}
     >
       {children}

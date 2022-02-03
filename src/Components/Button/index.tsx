@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, ReactNode, MutableRefObject } from "react";
 
 import { ButtonContainer, ButtonBox } from "./style";
 

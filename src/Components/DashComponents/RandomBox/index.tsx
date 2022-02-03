@@ -1,12 +1,15 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 
 import { useTmdb } from "Context/Series";
 import Button from "Components/Button";
+import ShowModal from "Components/MyListComponents/ShowModal";
 
 import { Container } from "./style";
 
 const RandomBox = () => {
-  const { popular /*TvShow*/ } = useTmdb();
+  const { popular } = useTmdb();
+
+  const [isOpen, setOpen] = useState(false);
 
   let imageBanner;
   let banner;
@@ -14,20 +17,18 @@ const RandomBox = () => {
   let poster;
   let overview;
   let title;
+  let TvShow;
 
   const RandomPoster = async () => {
     const RandomNumber = Math.round(Math.random() * popular.length);
-    const TvShow = popular[RandomNumber];
+    TvShow = popular[RandomNumber];
 
     banner = TvShow.backdrop_path;
     poster = TvShow.poster_path;
-    console.log("iniciei");
 
     if (banner === null || undefined) {
-      console.log("repetir");
       RandomPoster();
     } else {
-      console.log("escolhenod image");
       imageBanner = `https://www.themoviedb.org/t/p/w533_and_h300_bestv2${banner}`;
       imagePoster = `//www.themoviedb.org/t/p/w600_and_h900_bestv2/${poster}`;
       overview = TvShow.overview;
@@ -36,24 +37,28 @@ const RandomBox = () => {
   };
 
   if (popular.length > 0) {
-    console.log("popular maior que lenght");
     RandomPoster();
   }
 
   return (
-    <Container>
-      <img src={imagePoster} alt="poster" id="poster" />
-      <img src={imageBanner} alt="banner" id="banner" />
-      <div>
-        <section>
-          <h1>{title}</h1>
-          {!!overview !== false ? <p>{overview}</p> : <p>{title}</p>}
-        </section>
+    <>
+      {/* {isOpen && (
+        <ShowModal content={TvShow} isOpen={isOpen} setOpen={setOpen} />
+      )} */}
+      <Container>
+        <img src={imagePoster} alt="poster" id="poster" />
+        <img src={imageBanner} alt="banner" id="banner" />
         <div>
-          <Button>More details</Button>
+          <section>
+            <h1>{title}</h1>
+            {!!overview !== false ? <p>{overview}</p> : <p>{title}</p>}
+          </section>
+          <div>
+            <Button>More details</Button>
+          </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </>
   );
 };
 
