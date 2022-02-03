@@ -47,14 +47,17 @@ interface Serie {
 interface MySeries {
   backdrop_path: string;
   first_air_date: string;
+  genre_ids: number[];
   id: number;
   name: string;
   origin_country: string[];
   original_language: string;
   original_name: string;
   overview: string;
+  popularity: number;
   poster_path: string;
   vote_average: number;
+  vote_count: number;
   liked: boolean;
   status: "watched" | "watching" | "notWatched";
   idTmdb: number;
@@ -120,6 +123,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       overview,
       poster_path,
       vote_average,
+      popularity,
     } = serie;
     const newSerie = {
       backdrop_path,
@@ -128,6 +132,7 @@ export const UserProvider = ({ children }: UserProviderProps) => {
       origin_country,
       original_name,
       original_language,
+      popularity,
       overview,
       poster_path,
       vote_average,
