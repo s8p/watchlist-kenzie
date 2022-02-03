@@ -1,5 +1,10 @@
 import styled from "@emotion/styled";
 import Background from "../../Assets/background.jpeg";
+import { css } from "@emotion/react";
+
+interface ListProps {
+  display: boolean;
+}
 
 export const Container = styled.div`
   display: flex;
@@ -29,6 +34,9 @@ export const MyListBox = styled.div`
   min-width: 320px;
   max-width: 1600px;
   margin-top: 30px;
+  .search_container {
+    padding: 20px;
+  }
 `;
 
 export const ButtonBar = styled.div`
@@ -46,7 +54,15 @@ export const ButtonBar = styled.div`
   }
 `;
 
-export const List = styled.div`
+export const List = styled.div<ListProps>`
   margin: 0 auto;
   width: 80%;
+  ${(props) =>
+    props.display &&
+    css`
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+    `}
 `;
