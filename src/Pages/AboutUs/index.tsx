@@ -8,6 +8,10 @@ import Card from "Components/AboutusComponents/Card";
 import HomeButton from "Components/AboutusComponents/HomeButton";
 import { useHistory } from "react-router-dom";
 
+import erivan from "Assets/erivan.jpg";
+import murilo from "Assets/murilo.jpg";
+import guilherme from "Assets/guilhermeDev.png";
+
 import Header from "../../Components/Header";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import MenuMobile from "Components/MenuMobile";
@@ -49,8 +53,7 @@ const Aboutus = () => {
       linkedIn:
         "https://www.linkedin.com/in/guilherme-braz-moreira-faria-484aa620a/",
       gitHub: "https://github.com/guilhermebrazdev",
-      picture:
-        "https://media-exp1.licdn.com/dms/image/D4E35AQGVXd8agpKWEw/profile-framedphoto-shrink_800_800/0/1640298699730?e=1643875200&v=beta&t=WIwepHFQzWtPzZWdh1B3waLdqJNf3QXmInNAI3Cx6MU",
+      picture: guilherme,
     },
     {
       name: "Rodrigo de Souza",
@@ -73,8 +76,7 @@ const Aboutus = () => {
       q5: "Comic relief",
       linkedIn: "https://www.linkedin.com/in/erivan-ferreira-dev/",
       gitHub: "https://github.com/ErivanF",
-      picture:
-        "https://media-exp1.licdn.com/dms/image/D4D35AQE_7T7W4HEIVg/profile-framedphoto-shrink_800_800/0/1623347385601?e=1643875200&v=beta&t=55JMh42eXm5U_PTGb4uabvzk840tAaY52FofN-7uKeg",
+      picture: erivan,
     },
     {
       name: "Murilo Martins",
@@ -85,8 +87,7 @@ const Aboutus = () => {
       q5: "BodyBuilder",
       linkedIn: "https://www.linkedin.com/in/murilolmartins/",
       gitHub: "https://github.com/murilolmartins",
-      picture:
-        "https://media-exp1.licdn.com/dms/image/D4D35AQH2Dchx5jbeCA/profile-framedphoto-shrink_800_800/0/1636396987374?e=1643875200&v=beta&t=W1R11CIevgmylv2CiP6E8cJRP6y9Ak12Kb6J1ruVd2I",
+      picture: murilo,
     },
   ];
 
