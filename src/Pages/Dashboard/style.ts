@@ -1,5 +1,5 @@
-import styled from "@emotion/styled";
-import Background from "../../Assets/background.jpeg";
+import styled from '@emotion/styled'
+import Background from '../../Assets/mix_background.png'
 
 export const Container = styled.div`
   position: relative;
@@ -9,7 +9,7 @@ export const Container = styled.div`
   padding-bottom: 50px;
 
   background-image: url(${Background});
-  background-size: 80%;
+  background-size: 100%;
 
   .opacity_container {
     position: absolute;
@@ -24,7 +24,7 @@ export const Container = styled.div`
       #000000 80%
     );
   }
-`;
+`
 
 export const DashboardBox = styled.div`
   width: 90vw;
@@ -57,10 +57,10 @@ export const DashboardBox = styled.div`
 
       text-align: left;
 
-      font-family: "bungee", cursive;
+      font-family: 'bungee', cursive;
       color: var(--yellow);
       -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: #000;
     }
   }
-`;
+`

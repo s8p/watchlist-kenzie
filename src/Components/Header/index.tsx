@@ -1,8 +1,7 @@
 import { UseUser } from "Context/User";
 import { useEffect } from "react";
 import { Container, HighlightSpan } from "./styles";
-import LogoMobile from "../../Assets/LogoMobile.png";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LogoMobile from "../../Assets/LogoMobile2.png";
 import MenuIcon from "@mui/icons-material/Menu";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "Context/Auth";
