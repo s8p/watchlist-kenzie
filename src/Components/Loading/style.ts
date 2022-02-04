@@ -1,6 +1,6 @@
-import styled from "@emotion/styled";
-import { keyframes } from "@emotion/react";
-import Background from "../../Assets/background.jpeg";
+import styled from '@emotion/styled'
+import { keyframes } from '@emotion/react'
+import Background from '../../Assets/mix_background.png'
 
 export const loading = keyframes`
 	0% {
@@ -9,7 +9,7 @@ export const loading = keyframes`
 	100% {
 		transform: rotate(360deg);
 	}
-`;
+`
 
 const Container = styled.div`
   width: 100vw;
@@ -38,6 +38,6 @@ const Container = styled.div`
       #000000 99.99%
     );
   }
-`;
+`
 
-export default Container;
+export default Container
