@@ -1,9 +1,9 @@
-import styled from "@emotion/styled";
-import Background from "../../Assets/background.jpeg";
-import { css } from "@emotion/react";
+import styled from '@emotion/styled'
+import Background from '../../Assets/mix_background.png'
+import { css } from '@emotion/react'
 
 interface ListProps {
-  display: boolean;
+  display: boolean
 }
 
 export const Container = styled.div`
@@ -26,7 +26,7 @@ export const Container = styled.div`
       #000000 100%
     );
   }
-`;
+`
 
 export const MyListBox = styled.div`
   z-index: 1;
@@ -37,7 +37,7 @@ export const MyListBox = styled.div`
   .search_container {
     padding: 20px;
   }
-`;
+`
 
 export const ButtonBar = styled.div`
   display: flex;
@@ -52,7 +52,7 @@ export const ButtonBar = styled.div`
       width: 200px;
     }
   }
-`;
+`
 
 export const List = styled.div<ListProps>`
   margin: 0 auto;
@@ -65,4 +65,4 @@ export const List = styled.div<ListProps>`
       flex-direction: column;
       align-items: center;
     `}
-`;
+`

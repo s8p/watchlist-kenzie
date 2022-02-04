@@ -1,11 +1,11 @@
-import styled from "@emotion/styled";
-import Background from "../../Assets/background.jpeg";
+import styled from '@emotion/styled'
+import Background from '../../Assets/mix_background.png'
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
   background-image: url(${Background});
-  background-size: 80%;
+  background-size: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,4 +30,4 @@ export const Container = styled.div`
       left: 0;
     }
   }
-`;
+`

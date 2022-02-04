@@ -1,12 +1,11 @@
-import styled from "@emotion/styled";
-import Background from "../../Assets/background.jpeg";
+import styled from '@emotion/styled'
+import Background from '../../Assets/mix_background.png'
 
 export const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  /* background-image: url(${Background}); */
-  background: orange;
-  background-size: 80%;
+  background-image: url(${Background});
+  background-size: 100%;
   background-color: rgba(10, 23, 55, 0.5);
   display: flex;
   flex-direction: columm;
@@ -29,7 +28,7 @@ export const Container = styled.div`
     overflow: auto;
     overflow-x: hidden;
   }
-`;
+`
 export const MainBox = styled.div`
   position: relative;
   display: flex;
@@ -50,7 +49,7 @@ export const MainBox = styled.div`
       font-size: 40px;
     }
   }
-`;
+`
 export const DescriptionContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -77,7 +76,7 @@ export const DescriptionContainer = styled.div`
     > h3 {
       margin: 24px 0px;
       font-size: 24px;
-      font-family: "Bungee", cursive;
+      font-family: 'Bungee', cursive;
       @media (min-width: 600) {
         margin: 40px 0px;
         font-size: 40px;
@@ -87,7 +86,7 @@ export const DescriptionContainer = styled.div`
   > p {
     color: var(--white);
     font-size: 18px;
-    font-family: "Work Sans", sans-serif;
+    font-family: 'Work Sans', sans-serif;
     margin-bottom: 25px;
     text-align: left;
     @media (min-width: 600) {
@@ -95,11 +94,11 @@ export const DescriptionContainer = styled.div`
       margin-bottom: 40px;
     }
     > span {
-      font-family: "Bungee", cursive;
+      font-family: 'Bungee', cursive;
       color: var(--yellow);
     }
   }
-`;
+`
 
 export const CardContainer = styled.div`
   margin-top: 33px;
@@ -109,4 +108,4 @@ export const CardContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex: 1;
-`;
+`
