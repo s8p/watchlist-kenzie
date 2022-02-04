@@ -47,11 +47,13 @@ const FormLogin = () => {
           <FormsInput
             placeholder="Email"
             {...register("email")}
+            type="email"
             errorMessage={errors.email?.message}
           />
           <FormsInput
             placeholder="Password"
             {...register("password")}
+            type="password"
             errorMessage={errors.password?.message}
           />
           <Button>Sing In</Button>

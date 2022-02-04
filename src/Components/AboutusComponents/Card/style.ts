@@ -1,17 +1,4 @@
-import { keyframes } from "@emotion/react";
 import styled from "@emotion/styled";
-
-const rotateAnimation = keyframes`
- 0% {
-  transform: rotateY(0deg);
-} 
-50% {
-  transform: rotateY(180deg);
-}
-100% {
-  transform: rotateY(360deg);
-}
-`;
 
 export const Container = styled.div`
   display: flex;
@@ -20,10 +7,8 @@ export const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.6);
   border-radius: 15px;
   flex: 1;
-  max-width: 40%;
   min-width: 250px;
-  max-width: 300px;
-  height: 250px;
+  min-height: 300px;
   margin-bottom: 20px;
   color: var(--yellow);
   > header {
@@ -31,15 +16,13 @@ export const Container = styled.div`
     font-family: "Bungee", cursive;
     display: flex;
     justify-content: space-between;
-  }
-  > footer {
-    padding: 20px;
-    width: 40%;
-    display: flex;
-    justify-content: space-around;
-  }
-  :hover {
-    animation: ${rotateAnimation} 1s linear;
+
+    > div {
+      margin-right: 8px;
+      a + a {
+        padding-left: 8px;
+      }
+    }
   }
 `;
 
@@ -47,9 +30,14 @@ export const CardInfo = styled.div`
   display: flex;
   flex: 1;
   align-items: start;
-  padding: 20px;
+  flex-direction: column;
+  padding: 10px;
   padding-top: 0px;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 16px;
+
   > img {
     width: 100px;
     border-radius: 15px;
@@ -59,5 +47,6 @@ export const CardInfo = styled.div`
     margin-left: 20px;
     font-family: "Work Sans", sans-serif;
     color: var(--white);
+    font-size: 0.9rem;
   }
 `;

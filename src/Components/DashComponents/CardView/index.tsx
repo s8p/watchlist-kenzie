@@ -57,7 +57,12 @@ const CardView = ({ content }: CardViewProps) => {
   return (
     <>
       {isOpen && (
-        <ShowModal content={content} isOpen={isOpen} setOpen={setOpen} />
+        <ShowModal
+          added={setInclude}
+          content={content}
+          isOpen={isOpen}
+          setOpen={setOpen}
+        />
       )}
       <Container2
         whileHover={{ height: "350px", width: "230px" }}
@@ -79,7 +84,7 @@ const CardView = ({ content }: CardViewProps) => {
                   setInclude(false);
                 }}
               >
-                remove isto
+                Remove it
               </Button>
             ) : (
               <Button

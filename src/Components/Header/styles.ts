@@ -2,8 +2,9 @@ import styled from "@emotion/styled";
 
 export const Container = styled.div`
   width: 100%;
-  /* max-width: 1690px; */
   height: 80px;
+  max-width: 1560px;
+  align-self: center;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,24 +18,25 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  .mobile_menu {
-    svg {
-      font-size: 3rem;
-    }
-  }
-
-  #avatar {
+  #vilsao {
     width: 60px;
     border-radius: 100%;
   }
-  @media (min-width: 768px) {
+
+  span {
+    color: var(--yellow);
+  }
+  svg {
+    font-size: 60px;
+  }
+  @media (min-width: 600px) {
     .mobile_menu {
       display: none;
     }
   }
   .logo {
     display: none;
-    @media (min-width: 768px) {
+    @media (min-width: 600px) {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -44,23 +46,9 @@ export const Container = styled.div`
     .user_data {
       display: flex;
       flex-direction: column;
-      justify-content: space-evenly;
       align-items: baseline;
       padding-left: 10px;
-      gap: 16px;
-
-      font-family: "bungee", cursive;
-      color: var(--yellow);
-
-      span {
-        /* border: 1px solid var(--black); */
-        cursor: pointer;
-
-        transition: 0.3s;
-        :hover {
-          transform: scale(1.05);
-        }
-      }
+      font-family: "Bungee", cursive;
     }
     svg {
       font-size: 60px;
@@ -73,22 +61,20 @@ export const Container = styled.div`
     padding: 10px 30px 10px 10px;
     .nav_desktop {
       display: none;
-
-      @media (min-width: 768px) {
+      @media (min-width: 600px) {
         display: flex;
         justify-content: space-between;
         padding-right: 30px;
       }
-
       a {
-        font-family: "bungee", cursive;
-        color: var(--yellow);
-
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: #000;
-
+        color: white;
         text-decoration: none;
-        padding-right: 15px;
+        padding-right: 20px;
+        font-weight: bold;
+        :hover {
+          color: var(--yellow);
+          transform: scale(1.1);
+        }
       }
     }
     .logo_mobile {
@@ -96,5 +82,18 @@ export const Container = styled.div`
         width: 60px;
       }
     }
+  }
+  .active {
+    color: var(--yellow);
+  }
+`;
+
+export const HighlightSpan = styled.span`
+  margin-top: 6px;
+  color: var(--yellow);
+  :hover {
+    text-decoration: underline;
+    color: var(--white);
+    cursor: pointer;
   }
 `;

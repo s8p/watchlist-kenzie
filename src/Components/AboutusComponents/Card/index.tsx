@@ -30,15 +30,16 @@ const Card = ({
       <header>
         <h3>{name}</h3>
         <div>
-          <Link href={linkedIn}>
+          <Link href={linkedIn} target="_blank">
             <LinkedInIcon />
           </Link>
-          <Link href={gitHub}>
+          <Link href={gitHub} target="_blank">
             <GitHubIcon />
           </Link>
         </div>
       </header>
       <CardInfo>
+        <img src={picture} alt="foto do dev" />
         <ul className="list">
           <li>{q1}</li>
           <li>{q2}</li>
@@ -46,7 +47,6 @@ const Card = ({
           <li>{q4}</li>
           <li>{q5}</li>
         </ul>
-        <img src={picture} alt="foto do dev" />
       </CardInfo>
       <footer></footer>
     </Container>

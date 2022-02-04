@@ -1,10 +1,10 @@
 import { UseUser } from "Context/User";
 import { useEffect } from "react";
-import { Container } from "./styles";
+import { Container, HighlightSpan } from "./styles";
 import LogoMobile from "../../Assets/LogoMobile.png";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { useAuth } from "Context/Auth";
 import { useHistory } from "react-router";
 
@@ -20,23 +20,37 @@ const Header = () => {
   return (
     <Container>
       <div className="logo">
-        <img src={vilson} alt="vilson" id="avatar" />
+        <img src={vilson} alt="vilsao" id="vilsao" />
         <div className="user_data">
-          <p>{user.name}</p>
-          <span onClick={() => logOut(history)}>LogOut</span>
+          <p>
+            Welcome , <span>{user.name}</span>
+          </p>
+          <HighlightSpan onClick={() => logOut(history)}>LogOut</HighlightSpan>
         </div>
       </div>
       <div className="nav_container">
         <div className="nav_desktop">
-          <Link to="/dashboard" onClick={() => setSearch([])}>
-            Dashboard
-          </Link>
-          <Link to="/mylist" onClick={() => setSearch([])}>
+          <NavLink
+            to="/mylist"
+            activeStyle={{ color: `var(--yellow)` }}
+            onClick={() => setSearch([])}
+          >
             My list
-          </Link>
-          <Link to="/aboutus" onClick={() => setSearch([])}>
+          </NavLink>
+          <NavLink
+            to="/dashboard"
+            activeStyle={{ color: `var(--yellow)` }}
+            onClick={() => setSearch([])}
+          >
+            Dashboard
+          </NavLink>
+          <NavLink
+            to="/aboutus"
+            activeStyle={{ color: `var(--yellow)` }}
+            onClick={() => setSearch([])}
+          >
             About Us
-          </Link>
+          </NavLink>
         </div>
         <div className="logo_mobile">
           <img src={LogoMobile} alt="Logo" />
