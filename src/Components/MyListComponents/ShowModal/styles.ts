@@ -3,8 +3,6 @@ import styled from "@emotion/styled";
 export const Container = styled.div`
   padding: 20px 10px;
 
-  background: orange;
-
   background: rgb(2, 1, 23);
   background: -moz-linear-gradient(
     90deg,
@@ -22,7 +20,7 @@ export const Container = styled.div`
     rgba(85, 85, 84, 0.9) 100%
   );
 
-  border: 4px solid var(--darkGray);
+  border: 4px solid var(--yellow);
   border-radius: 15px;
 
   width: 80vw;
@@ -77,6 +75,7 @@ export const Container = styled.div`
       max-width: 90%;
       margin: 0 auto;
       display: block;
+      margin-bottom: 10px;
       @media (min-width: 600px) {
         display: none;
       }
@@ -97,6 +96,7 @@ export const InfoBox = styled.div`
 
   > section {
     /* background: var(--gray); */
+    padding-top: 8px;
     color: var(--white);
     padding: 8px 4px;
     max-height: 100px;
@@ -139,6 +139,7 @@ export const InfoBox = styled.div`
         
         #rating{
           width: 40px;
+          max-height: 40px;
         }
 
         #popularity{

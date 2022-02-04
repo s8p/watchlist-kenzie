@@ -1,10 +1,11 @@
-import styled from '@emotion/styled'
+import styled from "@emotion/styled";
 
-export const ButtonContainer = styled.section`
+export const ButtonContainer = styled.div`
   background: var(--yellow);
   padding: 2px;
   border-radius: 8px;
   border: 0;
+  padding: 3px;
 
   transition: 0.2s;
 
@@ -12,7 +13,13 @@ export const ButtonContainer = styled.section`
   :focus {
     transform: scale(1.05);
   }
-`
+  :hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+  :active {
+    transform: translateY(2px);
+  }
+`;
 
 export const ButtonBox = styled.button`
   /* background: var(--yellow);
@@ -35,10 +42,22 @@ export const ButtonBox = styled.button`
     0px 2px 2px rgba(0, 0, 0, 0.14), 0px 1px 5px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   transition: transform 100ms ease-in;
+
+  border: 2px solid var(--black);
+
+  font-weight: 600;
+
   :hover {
-    transform: translateY(-2px) scale(1.1);
+    transform: translateY(-2px) scale(1.05);
   }
   :active {
     transform: translateY(2px);
   }
-`
+
+  /* :hover {
+    transform: translateY(-2px) scale(1.05);
+  }
+  :active {
+    transform: translateY(2px);
+  } */
+`;

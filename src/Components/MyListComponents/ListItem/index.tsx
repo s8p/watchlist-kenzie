@@ -69,13 +69,6 @@ const MyListItem = ({ content }: MyLitItemProps) => {
               <Button
                 onClick={(evt) => {
                   evt.stopPropagation();
-                }}
-              >
-                Já assisti
-              </Button>
-              <Button
-                onClick={(evt) => {
-                  evt.stopPropagation();
                   removeSerie(content);
                 }}
               >

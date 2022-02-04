@@ -35,6 +35,7 @@ const RandomBox = ({ content }: ContentProps) => {
       )}
       <Container>
         <img
+          onClick={() => setOpen(true)}
           src={`//www.themoviedb.org/t/p/w600_and_h900_bestv2/${content.poster_path}`}
           alt="poster"
           id="poster"
@@ -54,7 +55,8 @@ const RandomBox = ({ content }: ContentProps) => {
             )}
           </section>
           <div>
-            <Button onClick={() => setOpen(true)}>More details</Button>
+            {" "}
+            <Button onClick={() => setOpen(true)}>More details</Button>{" "}
           </div>
         </div>
       </Container>

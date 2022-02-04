@@ -32,8 +32,14 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   h1 {
+    font-family: "bungee", cursive;
     color: var(--yellow);
-    font-size: 20px;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
+
+    font-size: 1.5rem;
+
+    color: var(--yellow);
     position: relative;
     align-self: start;
   }

@@ -24,12 +24,7 @@ const Mylist = () => {
           <Search />
         </div>
         <ButtonBar>
-          {search.length < 1 ? (
-            <>
-              <Button>Todos</Button>
-              <Button>Vistos</Button>
-            </>
-          ) : (
+          {search.length > 1 && (
             <Button onClick={() => setSearch([])}>Voltar</Button>
           )}
         </ButtonBar>

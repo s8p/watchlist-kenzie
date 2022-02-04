@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 import Background from "../../Assets/background.jpeg";
 
 export const Container = styled.div`
-  /* background: orange; */
   position: relative;
   display: flex;
   flex-direction: column;
@@ -16,8 +15,7 @@ export const Container = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    /* background: green; */
-    /* opacity: 0.6; */
+
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.586053) 0.01%,
@@ -32,8 +30,6 @@ export const DashboardBox = styled.div`
   width: 90vw;
   color: white;
   text-align: center;
-  /* height: 900px; */
-  /* background: var(--gray); */
   margin-top: 30px;
 
   display: flex;
@@ -51,10 +47,20 @@ export const DashboardBox = styled.div`
 
   > section {
     z-index: 0;
-    /* background: pink; */
     color: black;
     display: flex;
     flex-direction: column;
     gap: 20px;
+
+    h1 {
+      font-size: 1.5rem;
+
+      text-align: left;
+
+      font-family: "bungee", cursive;
+      color: var(--yellow);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: #000;
+    }
   }
 `;

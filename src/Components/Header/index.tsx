@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "Context/Auth";
 import { useHistory } from "react-router";
 
+import vilson from "Assets/viuviu3d.jpeg";
+
 const Header = () => {
   const { user, getUserData, setMobileOpen, setSearch } = UseUser();
   const { logOut } = useAuth();
@@ -18,10 +20,9 @@ const Header = () => {
   return (
     <Container>
       <div className="logo">
-        <AccountCircleIcon />
+        <img src={vilson} alt="vilson" id="avatar" />
         <div className="user_data">
           <p>{user.name}</p>
-          <p>{user.email}</p>
           <span onClick={() => logOut(history)}>LogOut</span>
         </div>
       </div>

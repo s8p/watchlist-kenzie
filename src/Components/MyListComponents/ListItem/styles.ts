@@ -135,12 +135,18 @@ export const Container = styled.div`
         h3 {
           width: 100%;
           font-size: 3rem;
+          font-family: "bungee", cursive;
+          color: var(--yellow);
+
+          -webkit-text-stroke-width: 2px;
+          -webkit-text-stroke-color: #000;
         }
         p {
           padding: 0 4px 0 4px;
           font-size: 1.5rem;
           overflow-y: scroll;
           margin: 0 16px;
+          max-height: 150px;
 
           ::-webkit-scrollbar {
             width: 6px;

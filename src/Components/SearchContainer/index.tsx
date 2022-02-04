@@ -8,7 +8,7 @@ const SearchContainer = () => {
 
   return (
     <Container>
-      <h1>Search results..</h1>
+      <h1>Search results...</h1>
       <SmallContainer>
         {search.map((element, index) => (
           <CardView key={index} content={element} />

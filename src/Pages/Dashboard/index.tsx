@@ -77,8 +77,10 @@ const Dashboard = () => {
             { tvShow } && <RandomBox content={tvShow} />
           )}
           <section>
-            <TopRatedBox />
+            <h1>Popular</h1>
             <PopularBox />
+            <h1>Top Rated</h1>
+            <TopRatedBox />
           </section>
         </DashboardBox>
       </Container>

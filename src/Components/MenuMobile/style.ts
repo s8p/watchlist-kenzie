@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const Container = styled.div`
+  z-index: 1;
   position: fixed;
   top: 4px;
   display: flex;
@@ -86,7 +87,7 @@ export const Container = styled.div`
       color: #f7d633;
     }
   }
-  @media (min-width: 600px) {
+  @media (min-width: 768px) {
     display: none;
   }
 `;

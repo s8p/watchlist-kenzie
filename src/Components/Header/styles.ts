@@ -16,17 +16,25 @@ export const Container = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  svg {
-    font-size: 60px;
+
+  .mobile_menu {
+    svg {
+      font-size: 3rem;
+    }
   }
-  @media (min-width: 600px) {
+
+  #avatar {
+    width: 60px;
+    border-radius: 100%;
+  }
+  @media (min-width: 768px) {
     .mobile_menu {
       display: none;
     }
   }
   .logo {
     display: none;
-    @media (min-width: 600px) {
+    @media (min-width: 768px) {
       display: flex;
       flex-direction: row;
       align-items: center;
@@ -36,8 +44,23 @@ export const Container = styled.div`
     .user_data {
       display: flex;
       flex-direction: column;
+      justify-content: space-evenly;
       align-items: baseline;
       padding-left: 10px;
+      gap: 16px;
+
+      font-family: "bungee", cursive;
+      color: var(--yellow);
+
+      span {
+        /* border: 1px solid var(--black); */
+        cursor: pointer;
+
+        transition: 0.3s;
+        :hover {
+          transform: scale(1.05);
+        }
+      }
     }
     svg {
       font-size: 60px;
@@ -50,14 +73,20 @@ export const Container = styled.div`
     padding: 10px 30px 10px 10px;
     .nav_desktop {
       display: none;
-      @media (min-width: 600px) {
+
+      @media (min-width: 768px) {
         display: flex;
         justify-content: space-between;
         padding-right: 30px;
       }
 
       a {
-        color: white;
+        font-family: "bungee", cursive;
+        color: var(--yellow);
+
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: #000;
+
         text-decoration: none;
         padding-right: 15px;
       }

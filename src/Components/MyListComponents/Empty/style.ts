@@ -20,12 +20,25 @@ export const Container = styled.div`
       #000000 80%
     );
     padding: 10px;
+
+    border-radius: 8px;
+    border: 4px solid var(--yellow);
   }
+
+  /* border-radius: 8px;
+  border: 2px solid var(--darkGray); */
+
   h1 {
     font-size: 30px;
     color: var(--yellow);
     position: relative;
     text-align: center;
     border-radius: 20px;
+
+    font-family: "bungee", cursive;
+    color: var(--yellow);
+
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: #000;
   }
 `;

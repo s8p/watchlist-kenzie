@@ -4,12 +4,12 @@ import { useTmdb } from "Context/Series";
 import { Container } from "./style";
 
 const PopularBox = () => {
-  const { popular } = useTmdb();
+  const { popular, topRated } = useTmdb();
 
   return (
     <Container>
       {/* Nosso array */}
-      {popular.map((element, index) => (
+      {topRated.map((element, index) => (
         <CardView key={index} content={element} />
       ))}
     </Container>

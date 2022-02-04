@@ -17,9 +17,7 @@ const MenuMobile = () => {
       <div className="header_container">
         <CloseIcon onClick={() => setMobileOpen(false)} />
         <div className="user_data">
-          <div className="icon">
-            <AccountCircleIcon />
-          </div>
+          <div className="icon"></div>
           <div className="data">
             <p>{user.name}</p>
             <span>{user.email}</span>
@@ -28,13 +26,31 @@ const MenuMobile = () => {
         <div></div>
       </div>
       <div className="links">
-        <Link to="/dashboard" onClick={() => setSearch([])}>
+        <Link
+          to="/dashboard"
+          onClick={() => {
+            setSearch([]);
+            setMobileOpen(false);
+          }}
+        >
           Dashboard
         </Link>
-        <Link to="/mylist" onClick={() => setSearch([])}>
+        <Link
+          to="/mylist"
+          onClick={() => {
+            setSearch([]);
+            setMobileOpen(false);
+          }}
+        >
           My list
         </Link>
-        <Link to="/aboutus" onClick={() => setSearch([])}>
+        <Link
+          to="/aboutus"
+          onClick={() => {
+            setSearch([]);
+            setMobileOpen(false);
+          }}
+        >
           About Us
         </Link>
         <span onClick={() => logOut(history)}>LogOut</span>
