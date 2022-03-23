@@ -22,7 +22,7 @@ const FormLogin = () => {
     password: yup
       .string()
       .required("Required Field")
-      .min(6, "Minimun of 6 digits"),
+      .min(6, "Minimun of 6 digit"),
   });
 
   const {
