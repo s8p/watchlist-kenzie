@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useAuth } from "Context/Auth";
 import { useHistory } from "react-router";
 
+import Button from "Components/Button";
+
 interface UserData {
   email: string;
   password: string;
@@ -16,7 +18,7 @@ interface UserData {
 }
 
 const FormRegister = () => {
-  const { registerUser } = useAuth();
+  const { registerUser, setIsLoadLogin } = useAuth();
   const history = useHistory();
 
   const formSchema = yup.object().shape({
@@ -35,6 +37,7 @@ const FormRegister = () => {
   } = useForm<UserData>({ resolver: yupResolver(formSchema) });
 
   function submitRegister(data: UserData) {
+    setIsLoadLogin(true);
     registerUser(data, history);
   }
   return (
@@ -61,7 +64,7 @@ const FormRegister = () => {
             errorMessage={errors.password?.message}
             type="password"
           />
-          <FormsButton>Sing Up</FormsButton>
+          <Button>Sing Up</Button>
         </form>
         <div className="links_login">
           <p>

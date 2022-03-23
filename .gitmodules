@@ -1,0 +1,3 @@
+[submodule "watchlist-fake-api"]
+	path = watchlist-fake-api
+	url = https://github.com/guilhermebrazdev/watchlist-fake-api
